@@ -1,0 +1,328 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: PauseMenuStrings Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: PauseMenuStrings
+  m_TableCollectionNameGuidString: 8952284ecf72d30478a905cc53a41c1e
+  m_Entries:
+  - m_Id: 8789442560
+    m_Key: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110140604416
+    m_Key: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 187596816384
+    m_Key: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241325850624
+    m_Key: Items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 295658864640
+    m_Key: Costumes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329985048576
+    m_Key: Photos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 523099193344
+    m_Key: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 578828910592
+    m_Key: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646747275264
+    m_Key: PhotoAlbum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 828419358720
+    m_Key: PhotoAlbumDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221357147439104
+    m_Key: Kite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221420812779520
+    m_Key: KiteDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221784618319872
+    m_Key: DiamondBag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222474640048128
+    m_Key: DiamondBagDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222627593732096
+    m_Key: ShadowCrystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222704563404800
+    m_Key: ShadowCrystalDesc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232160865042432
+    m_Key: CostumeHat1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232259070476288
+    m_Key: CostumeHat1Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232450339127296
+    m_Key: CostumeHat2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232511416582144
+    m_Key: CostumeHat2Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232617670885376
+    m_Key: CostumeHat3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232676923817984
+    m_Key: CostumeHat3Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232942863663104
+    m_Key: CostumeGlasses1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233095033012224
+    m_Key: CostumeGlasses1Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233231159148544
+    m_Key: CostumeGlasses2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233247571460096
+    m_Key: CostumeGlasses2Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233626291945472
+    m_Key: CostumeGlasses3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233629337010176
+    m_Key: CostumeGlasses3Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234071047553024
+    m_Key: CostumeScarf1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234129436459008
+    m_Key: CostumeScarf1Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234372668342272
+    m_Key: CostumeScarf2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234378892689408
+    m_Key: CostumeScarf2Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234711572299776
+    m_Key: CostumeScarf3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234724130045952
+    m_Key: CostumeScarf3Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 235065970016256
+    m_Key: CostumeBracelet1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 235152230072320
+    m_Key: CostumeBracelet1Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237755726839808
+    m_Key: CostumeBracelet2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237770360766464
+    m_Key: CostumeBracelet2Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238250633740288
+    m_Key: CostumeBracelet3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238263233429504
+    m_Key: CostumeBracelet3Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238560940933120
+    m_Key: CostumeMark1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238583560814592
+    m_Key: CostumeMark1Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239009362362368
+    m_Key: CostumeMark2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239021454540800
+    m_Key: CostumeMark2Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239545184698368
+    m_Key: CostumeMark3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239557612421120
+    m_Key: CostumeMark3Desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245047981522944
+    m_Key: OptionsGameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245182224416768
+    m_Key: OptionsGraphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245284863229952
+    m_Key: OptionsControls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245397291548672
+    m_Key: OptionsAudio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245405185228800
+    m_Key: OptionsDatas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363310480637952
+    m_Key: CharacterDeadZone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363626718576640
+    m_Key: CameraDeadZone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363742267457536
+    m_Key: Horizontal Camera Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363855140372480
+    m_Key: Vertical Camera Speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363936044302336
+    m_Key: InvertXAxis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364014507147264
+    m_Key: InvertYAxis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364074615717888
+    m_Key: ScreenShake
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700424187559936
+    m_Key: Screen mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700579548774400
+    m_Key: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700658527518720
+    m_Key: V Sync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700800794116096
+    m_Key: Framerate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700886546661376
+    m_Key: VisibleAimIcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 701056961232896
+    m_Key: VisibleInterface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702013442899968
+    m_Key: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702050965143552
+    m_Key: SFXs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702357744926720
+    m_Key: Voices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702927960555520
+    m_Key: AutomaticSave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703042704130048
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703080129904640
+    m_Key: Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703145326166016
+    m_Key: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13233692652879872
+    m_Key: SaveConfirmation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13343558801309696
+    m_Key: "SaveNotification\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13364274007392256
+    m_Key: MainMenuConfirmation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17679549456465920
+    m_Key: SkipCutscene
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1595972048494526489
+  references:
+    version: 2
+    RefIds:
+    - rid: 1595972048494526489
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1728169520599

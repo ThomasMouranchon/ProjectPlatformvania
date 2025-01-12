@@ -1,0 +1,375 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: PauseMenuStrings_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8952284ecf72d30478a905cc53a41c1e, type: 2}
+  m_Metadata:
+    m_Items:
+    - rid: 1595972062398644227
+  m_TableData:
+  - m_Id: 8789442560
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 110140604416
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 187596816384
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 241325850624
+    m_Localized: Items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 295658864640
+    m_Localized: Accessories
+    m_Metadata:
+      m_Items: []
+  - m_Id: 329985048576
+    m_Localized: Photos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 523099193344
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 578828910592
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 646747275264
+    m_Localized: Photo Album
+    m_Metadata:
+      m_Items: []
+  - m_Id: 828419358720
+    m_Localized: An album that allows you to keep precious photos organized.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221357147439104
+    m_Localized: Kite
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221420812779520
+    m_Localized: A kite gifted by . Allows you to glide on long distances.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 221784618319872
+    m_Localized: Diamonds bag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222474640048128
+    m_Localized: Allows you to carry up to {10} diamonds.
+    m_Metadata:
+      m_Items:
+      - rid: 1595972062398644227
+  - m_Id: 222627593732096
+    m_Localized: Shadow crystal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 222704563404800
+    m_Localized: 'A crystal obtained by accepting the other self.
+
+      Allows you
+      to dive inside shadows.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232160865042432
+    m_Localized: Haut-de-forme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232259070476288
+    m_Localized: 'A guarantee of survival for a wealthy person.
+
+      Fatal damages
+      are blocked for 5 diamonds.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232450339127296
+    m_Localized: Flower crown
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232511416582144
+    m_Localized: 'Borrow the power of the flowers.
+
+      Allows you to do a charged
+      jump when crouching.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232617670885376
+    m_Localized: Bandana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232676923817984
+    m_Localized: 'Become a master of martials arts.
+
+      Allows you to do another
+      consecutive kick.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 232942863663104
+    m_Localized: Eye patch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233095033012224
+    m_Localized: 'Helps you canalize your energy.
+
+      The energy gauge recharges
+      faster.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233231159148544
+    m_Localized: Flower makeup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233247571460096
+    m_Localized: 'Borrow the power of the flowers.
+
+      Allows you to do a long
+      jump when jumping just after a crouch.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233626291945472
+    m_Localized: Futuristic visor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 233629337010176
+    m_Localized: 'Do a barrel roll !
+
+      Allows you to cancel the ground pound
+      by retapping on the button.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234071047553024
+    m_Localized: Hero's cape
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234129436459008
+    m_Localized: 'Glide like a super-heros !
+
+      Gliding consumes less energy.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234372668342272
+    m_Localized: Black scarf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234378892689408
+    m_Localized: 'Awaken the ninja inside you.
+
+      Running continuously grants
+      you a speed boost.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234711572299776
+    m_Localized: Gentleman's tie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 234724130045952
+    m_Localized: 'Become the gentleman who fights with his legs.
+
+      Allows you
+      to do another consecutive kick.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 235065970016256
+    m_Localized: Anti-gravity bracelet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 235152230072320
+    m_Localized: 'Feels just like being in space.
+
+      Makes you fall slower.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237755726839808
+    m_Localized: Crystal bracelet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 237770360766464
+    m_Localized: 'Canalize the power of the mask.
+
+      Makes the charge of the
+      color''s attack faster.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238250633740288
+    m_Localized: Magnesite Bracelet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238263233429504
+    m_Localized: 'Perfect for climbing.
+
+      Makes you stick to walls.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238560940933120
+    m_Localized: Wrath's mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 238583560814592
+    m_Localized: 'Awaken the beast of darkness.
+
+      All masks grants you the red
+      form.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239009362362368
+    m_Localized: Joy's mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239021454540800
+    m_Localized: 'Links you to a mage.
+
+      All masks grants you the yellow form.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239545184698368
+    m_Localized: Sadness' mark
+    m_Metadata:
+      m_Items: []
+  - m_Id: 239557612421120
+    m_Localized: 'Use the tears of the dragon.
+
+      All masks grants you the blue
+      form.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245047981522944
+    m_Localized: Gameplay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245182224416768
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245284863229952
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245397291548672
+    m_Localized: Audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 245405185228800
+    m_Localized: Datas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363310480637952
+    m_Localized: Controller movement deadzone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363626718576640
+    m_Localized: Controller camera deadzone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363742267457536
+    m_Localized: "Horizontal camera speed\t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363855140372480
+    m_Localized: Vertical camera speed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363936044302336
+    m_Localized: Invert X axis of the camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364014507147264
+    m_Localized: Invert Y axis of the camera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 364074615717888
+    m_Localized: Screen shaking
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700424187559936
+    m_Localized: Screen mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700579548774400
+    m_Localized: Resolution
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700658527518720
+    m_Localized: V Sync
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700800794116096
+    m_Localized: Framerate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700886546661376
+    m_Localized: Visible aim icon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 701056961232896
+    m_Localized: Visible interface
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702013442899968
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702050965143552
+    m_Localized: Sound effects
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702357744926720
+    m_Localized: Voices
+    m_Metadata:
+      m_Items: []
+  - m_Id: 702927960555520
+    m_Localized: Automatic save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703042704130048
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703080129904640
+    m_Localized: Load
+    m_Metadata:
+      m_Items: []
+  - m_Id: 703145326166016
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13233692652879872
+    m_Localized: Do you want to save ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13343558801309696
+    m_Localized: Game saved !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13364274007392256
+    m_Localized: 'Return to main menu ?
+
+      (Datas not saved will be lost)'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17679549456465920
+    m_Localized: Skip
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 1595972062398644227
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0040e4e956ca0000

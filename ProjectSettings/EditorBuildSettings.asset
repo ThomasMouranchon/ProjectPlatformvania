@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 89db77dcfa62634439b94c6247466c83
+  - enabled: 1
+    path: Assets/Scenes/StartScene.unity
+    guid: 2125ccdbd60dfd6499db35c87631b6f6
+  - enabled: 1
+    path: Assets/Scenes/WholeMap.unity
+    guid: dff5021e9167cbc40992dea6da6be2b8
+  - enabled: 1
+    path: Assets/Scenes/CentralCity.unity
+    guid: b17ef535f1eb7f444959d81887d83f3f
+  - enabled: 1
+    path: Assets/Scenes/Desertis.unity
+    guid: caee4c1c397b32f4f86ceaa696029da6
+  - enabled: 1
+    path: Assets/Scenes/Corailla.unity
+    guid: 6239c84476d5f7240b4eada95c90b019
+  - enabled: 1
+    path: Assets/Scenes/OlympeMount.unity
+    guid: 33f83b04ebd2bed4e9159b2c76276c9c
+  - enabled: 1
+    path: Assets/Scenes/DarkSea.unity
+    guid: bc905973cf69bc74594406073da2a714
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 496652a1123481141b199e4b06c71f49, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: 0ba088262aa7e5049991b61287c626fd, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: dc7175d14a3036e43b7b6759846d8953, type: 2}

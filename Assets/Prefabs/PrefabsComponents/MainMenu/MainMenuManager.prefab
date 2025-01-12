@@ -1,0 +1,279 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4592203097705078395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3683140430481346451}
+  - component: {fileID: 202115617555556686}
+  m_Layer: 0
+  m_Name: Options Part
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3683140430481346451
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592203097705078395}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7143015730513447742}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &202115617555556686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592203097705078395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c14ccac12569a408e368500bc0c918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterDeadZoneSliderValue: 0.2
+  characterDeadZoneSlider: {fileID: 0}
+  characterDeadZoneText: {fileID: 0}
+  cameraDeadZoneSliderValue: 0.01
+  cameraDeadZoneSlider: {fileID: 0}
+  cameraDeadZoneText: {fileID: 0}
+  cameraSpeedHorizontalMultiplierSliderValue: 1.5
+  cameraSpeedHorizontalMultiplierSlider: {fileID: 0}
+  cameraSpeedHorizontalMultiplierText: {fileID: 0}
+  cameraSpeedVerticalMultiplierSliderValue: 1
+  cameraSpeedVerticalMultiplierSlider: {fileID: 0}
+  cameraSpeedVerticalMultiplierText: {fileID: 0}
+  invertXAxis: {fileID: 0}
+  invertYAxis: {fileID: 0}
+  cameraShakeToggle: {fileID: 0}
+  visibleAimIconToggle: {fileID: 0}
+  visibleInterfaceToggle: {fileID: 0}
+  vSyncCountToggle: {fileID: 0}
+  framerateSelection: {fileID: 0}
+  framerateSelectionGameobject: {fileID: 0}
+  desiredFramerate: 30
+  musicValue: 0
+  musicSlider: {fileID: 0}
+  sfxValue: 0
+  sfxSlider: {fileID: 0}
+  voicesValue: 0
+  voicesSlider: {fileID: 0}
+  autoSaveToggle: {fileID: 0}
+  optionsValues: {fileID: 0}
+--- !u!1 &7143015730513447741
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7143015730513447742}
+  m_Layer: 0
+  m_Name: MainMenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7143015730513447742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7143015730513447741}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3683140430481346451}
+  - {fileID: 5131136057354341427}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8577031843844649169
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5131136057354341427}
+  - component: {fileID: 2146528906521466117}
+  - component: {fileID: 4085413747551586968}
+  - component: {fileID: 5900846303059117256}
+  - component: {fileID: 5747839510473129867}
+  m_Layer: 0
+  m_Name: Menuing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5131136057354341427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577031843844649169}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7143015730513447742}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2146528906521466117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577031843844649169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e6f123f29cd9c4c8719dec70bc22bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vSyncCheckbox: {fileID: 0}
+  vSyncDropdown: {fileID: 0}
+  underDropdownToggle: {fileID: 0}
+--- !u!114 &4085413747551586968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577031843844649169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90356cb1cad94294a856a33935fd96ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMainMenuPanel: {fileID: 0}
+  saveFilesPanel: {fileID: 0}
+  credits: {fileID: 0}
+  options: {fileID: 0}
+  check: []
+  sceneToLoadGame: StartScene
+  navigationIcon: {fileID: 0}
+  inputReader: {fileID: 0}
+  mainMenuButton: {fileID: 0}
+  saveFilesFirstButton: {fileID: 0}
+  mainMenuOptionButton: {fileID: 0}
+  optionsFirstButton: {fileID: 0}
+  goBackButton: {fileID: 0}
+  afterBackTimer: 0
+--- !u!114 &5900846303059117256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577031843844649169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b6c201afd7166f45ac2d03467b8b7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chooseCategoryButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gameplayButton: {fileID: 0}
+  graphicsButton: {fileID: 0}
+  controlsButton: {fileID: 0}
+  audioButton: {fileID: 0}
+  datasToggle: {fileID: 0}
+  gameplayEndToggle: {fileID: 0}
+  graphicsEndDropdown: {fileID: 0}
+  controlsEndToggle: {fileID: 0}
+  audioEndSlider: {fileID: 0}
+  datasEndButton: {fileID: 0}
+--- !u!114 &5747839510473129867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8577031843844649169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec272e11cad4b8643aa61142f63af110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventSystem: {fileID: 0}
+  copyButton: {fileID: 0}
+  deleteButton: {fileID: 0}
+  saveFileButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  copyFileButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  copyTargetFileButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  deleteFileButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  copyConfirmation: {fileID: 0}
+  copyConfirmationButton: {fileID: 0}
+  copiedSaveFileIconHandler: {fileID: 0}
+  erasedSaveFileIconHandler: {fileID: 0}
+  copyNotification: {fileID: 0}
+  copyNotificationButton: {fileID: 0}
+  deleteConfirmation: {fileID: 0}
+  deleteConfirmationButton: {fileID: 0}
+  deletedSaveFileIconHandler: {fileID: 0}
+  deleteConfirmation2: {fileID: 0}
+  deleteConfirmation2Button: {fileID: 0}
+  deletedSaveFileIconHandler2: {fileID: 0}
+  deleteNotification: {fileID: 0}
+  deleteNotificationButton: {fileID: 0}
+  blackScreenImage: {fileID: 0}
+  changeStringReset: {fileID: 0}

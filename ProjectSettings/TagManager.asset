@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Damage
+  - Wall
+  - Collectible
+  - Checkpoint
+  - PlayerHeadPoint
+  - FireBall
+  - ChargedFireBall
+  - Enemy
+  - PlayerGroundDetector
+  - Counter
+  - TransparentWall
+  - UITips
+  - UIModifiers
+  - LoadingZone
+  - Photo
+  - in-GameUI
+  - Gameplay
+  - MainComponents
+  - LingeringHitbox
+  - LevelLoader
+  - Boss
+  - NPC
+  - MaskPowerProjectile
+  - Yoyo
+  - BombExplosion
+  - MaskPowerChargedProj
+  - Button
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Collectible
+  - Water
+  - UI
+  - TopLayer
+  - Player
+  - Ground
+  - Particles
+  - ForRaycast
+  - Enemy
+  - Counter
+  - Platform
+  - EnemyDetecter
+  - PlayerFollower
+  - TopOfPlayer
+  - UICamera
+  - UITopOfCamera
+  - UILoadingCamera
+  - GroundDetector
+  - NPC
+  - NPCDetector
+  - Cloud
+  - PhantomWall
+  - ShadowMesh
+  - Button
+  - ButtonDetector
+  - 
+  - Electroball
+  - Waterball
+  - Fireball
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: UI Buttons
+    uniqueID: 551512141
+    locked: 0
+  - name: UI NavigationIcon
+    uniqueID: 1722939359
+    locked: 0

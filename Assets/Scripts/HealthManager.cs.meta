@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b381f2feaf243944c831100d878f136a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - playerRenderer: {instanceID: 0}
+  - thePlayer: {instanceID: 0}
+  - deathEffect: {instanceID: 0}
+  - hurtEffect: {instanceID: 0}
+  - blackScreen: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
