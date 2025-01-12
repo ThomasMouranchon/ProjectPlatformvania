@@ -22,7 +22,7 @@ public class PlayerTransformTarget : MonoBehaviour
                 event_TransformGO.target = CharacterManager.Instance.gameObject;
                 break;
             case TargetedTransform.End:
-                event_TransformGO.targetEnd = CharacterManager.Instance.gameObject;
+                event_TransformGO.targetEnd = CharacterManager.Instance.characterHead;
                 break;
         }
     }

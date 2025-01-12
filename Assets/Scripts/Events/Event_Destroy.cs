@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Event_Destroy : MonoBehaviour
 {
+    public GameObject objectToDestroy;
+    [Space(10)]
+
     public PlayAnimation playAnimation;
     [Space(10)]
 
@@ -15,7 +18,7 @@ public class Event_Destroy : MonoBehaviour
 
     public void DestroyFunction(bool instant)
     {
-        if (instant) Destroy(gameObject);
+        if (instant) Destroy(objectToDestroy);
         else StartCoroutine(DestroyCoroutine());
     }
 
@@ -25,13 +28,13 @@ public class Event_Destroy : MonoBehaviour
 
         foreach (ParticleSystem effect in destroyEffects)
         {
-            Instantiate(effect, transform.position, transform.rotation);
+            Instantiate(effect, objectToDestroy.transform.position, objectToDestroy.transform.rotation);
         }
 
         if (collider) collider.enabled = false;
 
         yield return new WaitForSeconds(delayBeforeDestroy);
 
-        Destroy(gameObject);
+        Destroy(objectToDestroy);
     }
 }

@@ -12,6 +12,7 @@ public class TrampolinePlatform : MonoBehaviour
     public bool isKnockedDown;
     public bool hasSpikes;
     private HealthManager healthManager;
+    public BossHandler bossHandler;
 
     void Start()
     {
@@ -30,6 +31,10 @@ public class TrampolinePlatform : MonoBehaviour
             {
                 characterManager.Bounce(bounceStrength);
                 characterManager.JumpHitEffect(this.transform);
+                if (bossHandler)
+                {
+                    bossHandler.Damaged(5);
+                }
             }
         }
     }

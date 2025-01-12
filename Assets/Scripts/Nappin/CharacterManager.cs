@@ -162,6 +162,7 @@ public class CharacterManager : MonoBehaviour
     private Vector3 cameraInitialPosition;
     [Tooltip("Character model")]
     public GameObject characterModel;
+    public GameObject characterHead;
     public Transform characterArmature;
     [Tooltip("Character rotation speed when the forward direction is changed")]
     public float characterModelRotationSmooth = 0.1f;

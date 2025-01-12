@@ -21,6 +21,8 @@ public class EventList : MonoBehaviour
 
     public GameObject[] reversedEventList;
 
+    private bool stopEvent;
+
     private CharacterManager characterManager;
     private SaveManager saveManager;
 
@@ -69,7 +71,8 @@ public class EventList : MonoBehaviour
             Event_Destroy event_Destroy = calledEvents[i].GetComponent<Event_Destroy>();
             Event_SaveValue event_SaveValue = calledEvents[i].GetComponent<Event_SaveValue>();
             Event_ChangeGravity event_ChangeGravity = calledEvents[i].GetComponent<Event_ChangeGravity>();
-            Event_BossEnum event_BossEnum = calledEvents[i].GetComponent<Event_BossEnum>();            
+            Event_BossEnum event_BossEnum = calledEvents[i].GetComponent<Event_BossEnum>();
+            Event_RigidbodyConstraints event_RigidbodyConstraints = calledEvents[i].GetComponent<Event_RigidbodyConstraints>();
             NPCLongTalk npcLongTalk = calledEvents[i].GetComponent<NPCLongTalk>();
             PlayAnimation playAnimation = calledEvents[i].GetComponent<PlayAnimation>();
             FixedCamera fixedCamera = calledEvents[i].GetComponent<FixedCamera>();
@@ -122,6 +125,10 @@ public class EventList : MonoBehaviour
             {
                 if (!loadOnStart) event_BossEnum.ChangeBossEnum();
             }
+            else if (event_RigidbodyConstraints)
+            {
+                if (!loadOnStart) event_RigidbodyConstraints.SwitchRigidbodyConstraints();
+            }
             else if (npcLongTalk)
             {
                 if (!loadOnStart)
@@ -157,6 +164,7 @@ public class EventList : MonoBehaviour
 
         eventHappened = true;
         eventisHappening = false;
+        stopEvent = false;
         if (savedEvent)
         {
             saveManager.activatedEvents[savedEventValue] = eventHappened;
