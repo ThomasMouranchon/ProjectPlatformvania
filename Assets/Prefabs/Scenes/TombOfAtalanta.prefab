@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cancelable: 0
-  resetOnDisable: 0
+  resetOnDisable: 1
   xAxisValue: 90
   transitionTimeX: 0.5
   yAxisValue: 0.5
@@ -901,7 +901,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6596199104207500312}
-  - component: {fileID: 379787471421020190}
+  - component: {fileID: 6203031274478466972}
   m_Layer: 2
   m_Name: ReleaseControls
   m_TagString: Untagged
@@ -924,7 +924,7 @@ Transform:
   m_Father: {fileID: 3608047316721596015}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &379787471421020190
+--- !u!114 &6203031274478466972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -933,10 +933,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1207512576733471684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 538b674b9e358144c9487cf5e3fdf1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1beda4a0585ea3541af3b26a57489af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableControls: 1
 --- !u!1 &1309204165265272383
 GameObject:
   m_ObjectHideFlags: 0
@@ -3797,55 +3796,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5281138365992107852
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5651171692645610453}
-  - component: {fileID: 272871482139815680}
-  m_Layer: 2
-  m_Name: SaveValue (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5651171692645610453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5281138365992107852}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3608047316721596015}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &272871482139815680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5281138365992107852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8adc6629877bc2846b6dac077c25755f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  variableType: 2
-  elementToSave: enableDash
-  intToSave: 0
-  stringToSave: 
-  boolToSave: 1
 --- !u!1 &5338209196948943592
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,7 +4703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538b674b9e358144c9487cf5e3fdf1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableControls: 0
 --- !u!1 &6884997056642348858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4895,7 +4844,6 @@ Transform:
   - {fileID: 8508643708908330975}
   - {fileID: 8168236854179883243}
   - {fileID: 4384543545055720334}
-  - {fileID: 5651171692645610453}
   - {fileID: 8348987084323049227}
   m_Father: {fileID: 8644154585906389387}
   m_RootOrder: 1
@@ -4991,6 +4939,8 @@ MonoBehaviour:
   savedEventValue: 0
   loadSaveAtStart: 0
   oneTimeEvent: 1
+  eventisHappening: 0
+  reverseWhenReused: 0
   eventList:
   - {fileID: 1161926567538700486}
   - {fileID: 6716887722284762323}
@@ -5006,9 +4956,7 @@ MonoBehaviour:
   - {fileID: 3379731146700546197}
   - {fileID: 1207512576733471684}
   - {fileID: 3044776011081781084}
-  - {fileID: 8280500507038256862}
   - {fileID: 5510718737357328805}
-  - {fileID: 5281138365992107852}
   reversedEventList: []
 --- !u!1 &6952558725423924290
 GameObject:
@@ -6138,7 +6086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8348987084323049227
 Transform:
   m_ObjectHideFlags: 0
@@ -6152,7 +6100,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3608047316721596015}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1177065400935524756
 MonoBehaviour:

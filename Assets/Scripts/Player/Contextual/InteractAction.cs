@@ -70,13 +70,6 @@ public class InteractAction : MonoBehaviour
             }
             else if (!backHold)
             {
-                characterManager.canMove = false;
-                //inputReader.enableJump = false;
-                inputReader.enableDash = false;
-                inputReader.enableBomb = false;
-                inputReader.enableYoyo = false;
-                inputReader.enablePause = false;
-
                 afterTalkTimer++;
                 StartInteraction();
             }

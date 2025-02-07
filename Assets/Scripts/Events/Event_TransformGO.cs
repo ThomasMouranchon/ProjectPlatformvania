@@ -27,6 +27,7 @@ public class Event_TransformGO : MonoBehaviour
     public bool endWhenFinished = true;
 
     private float tolerance = 0.01f;
+    public bool makePlayerLand = false;
 
     public void TransformGameObject(bool instant)
     {
@@ -55,27 +56,17 @@ public class Event_TransformGO : MonoBehaviour
     {
         if (startTrPosition)
         {
-            Vector3 targetPosition = targetEnd.transform.position;
-            if (positionSpeed.x == 0)
-            {
-                targetPosition.x = target.transform.position.x;
-            }
-            if (positionSpeed.y == 0)
-            {
-                targetPosition.y = target.transform.position.y;
-            }
-            if (positionSpeed.z == 0)
-            {
-                targetPosition.z = target.transform.position.z;
-            }
-
             target.transform.position = Vector3.MoveTowards(
                 target.transform.position,
-                targetPosition,
+                targetEnd.transform.position,
                 positionSpeed.magnitude * Time.deltaTime
             );
 
-            if (Vector3.Distance(target.transform.position, targetEnd.transform.position) < tolerance && endWhenFinished) startTrPosition = false;
+            if (Vector3.Distance(target.transform.position, targetEnd.transform.position) < tolerance && endWhenFinished)
+            {
+                startTrPosition = false;
+                if (makePlayerLand) CharacterManager.Instance.soulAnim.CrossFade("Player_LandingIdle", 0);
+            }
         }
 
         if (startTrRotation)

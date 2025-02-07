@@ -81,6 +81,8 @@ MonoBehaviour:
   savedEventValue: 0
   loadSaveAtStart: 0
   oneTimeEvent: 1
+  eventisHappening: 0
+  reverseWhenReused: 0
   eventList:
   - {fileID: 6996774330864003516}
   - {fileID: 4773096198797087424}
@@ -143,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5793783181180279932}
-  - component: {fileID: 5939121679469145156}
+  - component: {fileID: 7436369216352936555}
   m_Layer: 2
   m_Name: ReleaseControls
   m_TagString: Untagged
@@ -166,7 +168,7 @@ Transform:
   m_Father: {fileID: 1965928022467193484}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5939121679469145156
+--- !u!114 &7436369216352936555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,10 +177,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1685753284313390144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 538b674b9e358144c9487cf5e3fdf1a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1beda4a0585ea3541af3b26a57489af6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableControls: 1
 --- !u!1 &3628506825564549507
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,7 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538b674b9e358144c9487cf5e3fdf1a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enableControls: 0
 --- !u!1 &6569134584405803962
 GameObject:
   m_ObjectHideFlags: 0

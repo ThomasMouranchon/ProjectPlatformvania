@@ -778,7 +778,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 8413553
-  movementSpeed: 20
+  movementSpeed: 25
   afterLedgeMovementSpeed: 5
   movementThrashold: 0.01
   dampSpeedUp: 0.2
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   stretchAnimationScript: {fileID: 0}
   uiSoulEyesHandler: {fileID: 7483578371827123989}
   inputProvider: {fileID: 0}
-  talkAction: {fileID: 0}
+  eventTextAction: {fileID: 0}
   zoomHandlerTalk: {fileID: 2098979916138740433}
   zoomHandlerWall: {fileID: 6656717390280950463}
   screenCenter: {fileID: 0}
@@ -1292,7 +1292,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7076149012401977045}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5693503910851668910
 MonoBehaviour:
@@ -2472,7 +2472,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7076149012401977045}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8941488683708682908
 MonoBehaviour:
@@ -3305,6 +3305,7 @@ Transform:
   - {fileID: 7957955709989415696}
   - {fileID: 5185771418806585225}
   - {fileID: 7604585223582795191}
+  - {fileID: 7330464184588019865}
   - {fileID: 1153168579130280455}
   - {fileID: 5183324884426094103}
   - {fileID: 4873920190584572414}
@@ -4831,7 +4832,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7076149012401977045}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3127341405966765222
 MonoBehaviour:
@@ -6121,6 +6122,55 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1 &6281210999655647724
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7330464184588019865}
+  - component: {fileID: 5357075261836921950}
+  m_Layer: 7
+  m_Name: TextAction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7330464184588019865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281210999655647724}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7076149012401977045}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5357075261836921950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6281210999655647724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4254518c1ec3dc845a7853163efb842d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  nextText: 0
+  fastForwardAnim: {fileID: 126814535142823430}
+  isFastForward: 0
+  afterValidateTimer: 0
 --- !u!1 &6300020000626366209
 GameObject:
   m_ObjectHideFlags: 0
@@ -8213,7 +8263,7 @@ MonoBehaviour:
   characterManager: {fileID: 569745364038907918}
   healthManager: {fileID: 0}
   playerObject: {fileID: 6770681274256296461}
-  talkAction: {fileID: 7920481395375008653}
+  talkAction: {fileID: 0}
 --- !u!1 &8732390090648429620
 GameObject:
   m_ObjectHideFlags: 0
@@ -8701,10 +8751,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7604585223582795191}
-  - component: {fileID: 7920481395375008653}
   - component: {fileID: 8899974818969487051}
   m_Layer: 7
-  m_Name: Talk
+  m_Name: LongTalkHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8725,33 +8774,6 @@ Transform:
   m_Father: {fileID: 7076149012401977045}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7920481395375008653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9095027624347788417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05a82464fb5173d4088f37ad68121563, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isTalking: 0
-  nextText: 0
-  animator: {fileID: 26378138927893197}
-  soulAnim: {fileID: 0}
-  eyeAnim: {fileID: 0}
-  soulEyesHandler: {fileID: 7483578371827123989}
-  zoomHandler: {fileID: 0}
-  talkComposerHeight:
-  - 0.3
-  - 0.3
-  - 0.5
-  numberOfSteps: 10
-  fastForwardAnim: {fileID: 126814535142823430}
-  isFastForward: 0
-  afterTalkTimer: 0
 --- !u!114 &8899974818969487051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8766,8 +8788,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   talkBubble: {fileID: 0}
   talkBubbleAnim: {fileID: 0}
-  validateIcon: {fileID: 0}
   talkBubbleRandomizer: {fileID: 0}
+  validateIcon: {fileID: 0}
+  speedUpAnim: {fileID: 126814535142823430}
 --- !u!1 &9169248339331348480
 GameObject:
   m_ObjectHideFlags: 0

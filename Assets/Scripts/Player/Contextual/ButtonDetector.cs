@@ -44,6 +44,7 @@ public class ButtonDetector : MonoBehaviour
                 }
 
                 animator.SetBool("canTalk", false);
+                characterManager.canInteract = false;
 
                 Vector3 direction = other.transform.position - playerObject.transform.position;
                 direction.y = 0;

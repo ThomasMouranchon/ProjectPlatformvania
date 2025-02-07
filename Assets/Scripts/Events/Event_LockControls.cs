@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Event_LockControls : MonoBehaviour
 {
-    public bool enableControls;
     private InputReader inputReader;
     private CharacterManager characterManager;
     private PauseManager pauseManager;
@@ -15,13 +14,16 @@ public class Event_LockControls : MonoBehaviour
         characterManager = CharacterManager.Instance;
         pauseManager = PauseManager.Instance;
 
-        inputReader.enableAxisInput = enableControls;
-        characterManager.canMove = enableControls;
-        inputReader.enableJump = enableControls;
-        inputReader.enableBomb = enableControls;
-        inputReader.enableDash = enableControls;
-        inputReader.enableYoyo = enableControls;
-        inputReader.enableCameraSwitch = enableControls;
-        pauseManager.canBePaused = enableControls;
+        inputReader.enableAxisInput = false;
+        characterManager.canMove = false;
+        inputReader.enableJump = false;
+        inputReader.enableBomb = false;
+        inputReader.enableDash = false;
+        inputReader.enableYoyo = false;
+        inputReader.enableCameraSwitch = false;
+        pauseManager.canBePaused = false;
+
+        characterManager.isThrowing = false;
+        characterManager.altThrowing = false;
     }
 }

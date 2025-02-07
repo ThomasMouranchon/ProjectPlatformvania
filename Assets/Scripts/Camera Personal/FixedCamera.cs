@@ -53,7 +53,17 @@ public class FixedCamera : MonoBehaviour
     {
         if (!finishInit)
         {
-            StartEffects();
+            cameraFreeLookController = CameraFreeLookController.Instance;
+            inputReader = InputReader.Instance;
+
+            if (gameObject.GetComponent<Collider>() == null || !gameObject.GetComponent<Collider>().isTrigger)
+            {
+                triggerBased = false;
+
+                cameraTarget = GetComponent<CameraTarget>();
+            }
+            else triggerBased = true;
+
             finishInit = true;
         }
     }
@@ -62,7 +72,30 @@ public class FixedCamera : MonoBehaviour
     {
         if (finishInit)
         {
-            StartEffects();
+            cameraFreeLookController = CameraFreeLookController.Instance;
+            inputReader = InputReader.Instance;
+
+            if (gameObject.GetComponent<Collider>() == null || !gameObject.GetComponent<Collider>().isTrigger)
+            {
+                triggerBased = false;
+
+                cameraTarget = GetComponent<CameraTarget>();
+                hasCameraTarget = cameraTarget;
+                if (hasCameraTarget)
+                {
+                    changeRadius = true;
+                    changeHeight = true;
+                    cameraTarget.SwitchTarget(true);
+                }
+            }
+            else
+            {
+                triggerBased = true;
+                if (!cancelable) inputReader.enableCameraSwitch = false;
+                cameraFreeLookController.fixedCamera = true;
+            }
+
+            cameraReset = false;
         }
     }
 

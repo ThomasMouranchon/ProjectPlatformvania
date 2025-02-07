@@ -126,7 +126,7 @@ public class InteractableButton : MonoBehaviour
 
     public void CollisionEffect()
     {
-        playAnimation.CallAnimation();
+        if (playAnimation) playAnimation.CallAnimation();
         foreach (ParticleSystem effect in hitEffects)
         {
             Instantiate(effect, transform.position, transform.rotation);

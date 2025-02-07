@@ -24,7 +24,7 @@ public class InputReader : MonoBehaviour
     [HideInInspector] public bool enableBomb = true;
     [HideInInspector] public bool enableDash = true;
     [HideInInspector] public bool enableYoyo = true;
-    [HideInInspector] public bool enableCameraSwitch = true;
+    public bool enableCameraSwitch = true;
     [HideInInspector] public bool enablePause = true;
     [HideInInspector] public bool enableValidate = true;
     [HideInInspector] public bool enableBack = true;
@@ -252,89 +252,81 @@ public class InputReader : MonoBehaviour
         {
             axisInput = axisInputAction.ReadValue<Vector2>();
         }
+        else
+        {
+            axisInput = new Vector2(0, 0);
+        }
     }
 
     public void UpdateJumpInput()
     {
-        if (enableJump)
+        if (enableJump && jumpAction.WasPressedThisFrame())
         {
-            if (jumpAction.WasPressedThisFrame())
-            {
-                jump = true;
-                jumpHold = true;
+            jump = true;
+            jumpHold = true;
 
-                hasJumped = true;
-                skippedFrame = false;
-                if (Time.timeScale > 0)
-                {
-                    currentJumpTimer = jumpTimerLimit;
-                }
-            }
-            else if (jumpAction.WasReleasedThisFrame())
+            hasJumped = true;
+            skippedFrame = false;
+            if (Time.timeScale > 0)
             {
-                jump = false;
-                jumpHold = false;
+                currentJumpTimer = jumpTimerLimit;
             }
+        }
+        else if (!enableJump | jumpAction.WasReleasedThisFrame())
+        {
+            jump = false;
+            jumpHold = false;
         }
     }
 
     public void UpdateGlideInput()
     {
-        if (enableGlide)
+        if (enableGlide && glideAction.WasPressedThisFrame())
         {
-            if (glideAction.WasPressedThisFrame())
-            {
-                glide = true;
-                glideHold = true;
+            glide = true;
+            glideHold = true;
 
-                hasGlide = true;
-                skippedFrame = false;
-            }
-            else if (glideAction.WasReleasedThisFrame())
-            {
-                glide = false;
-                glideHold = false;
-            }
+            hasGlide = true;
+            skippedFrame = false;
+        }
+        else if (!enableGlide | glideAction.WasReleasedThisFrame())
+        {
+            glide = false;
+            glideHold = false;
         }
     }
 
     public void UpdateBombInput()
     {
-        if (enableBomb)
+        if (enableBomb && bombAction.WasPressedThisFrame())
         {
-            if (bombAction.WasPressedThisFrame())
-            {
-                bomb = true;
-                bombHold = true;
+            bomb = true;
+            bombHold = true;
 
-                hasUsedBomb = true;
-                skippedFrame = false;
-            }
-            else if (bombAction.WasReleasedThisFrame())
-            {
-                bomb = false;
-                bombHold = false;
-            }
+            hasUsedBomb = true;
+            skippedFrame = false;
+        }
+        else if (!enableBomb | bombAction.WasReleasedThisFrame())
+        {
+            bomb = false;
+            bombHold = false;
         }
     }
 
     public void UpdateDashInput()
     {
-        if (enableDash)
+        if (enableDash && dashAction.WasPressedThisFrame())
         {
-            if (dashAction.WasPressedThisFrame())
-            {
-                dash = true;
-                dashHold = true;
+            dash = true;
+            dashHold = true;
 
-                hasDashed = true;
-                skippedFrame = false;
-            }
-            else if (dashAction.WasReleasedThisFrame())
-            {
-                dash = false;
-                dashHold = false;
-            }
+            hasDashed = true;
+            skippedFrame = false;
+        }
+        else if (!enableDash | dashAction.WasReleasedThisFrame())
+        {
+            dash = false;
+            dashHold = false;
         }
     }
 
@@ -360,21 +352,18 @@ public class InputReader : MonoBehaviour
 
     public void UpdateCameraSwitchInput()
     {
-        if (enableCameraSwitch)
+        if (enableCameraSwitch && cameraSwitchAction.WasPressedThisFrame())
         {
-            if (cameraSwitchAction.WasPressedThisFrame())
-            {
-                cameraSwitch = true;
-                cameraSwitchHold = true;
+            cameraSwitch = true;
+            cameraSwitchHold = true;
 
-                hasCameraSwitched = true;
-                skippedFrame = false;
-            }
-            else if (cameraSwitchAction.WasReleasedThisFrame())
-            {
-                cameraSwitch = false;
-                cameraSwitchHold = false;
-            }
+            hasCameraSwitched = true;
+            skippedFrame = false;
+        }
+        else if (!enableCameraSwitch | cameraSwitchAction.WasReleasedThisFrame())
+        {
+            cameraSwitch = false;
+            cameraSwitchHold = false;
         }
     }
 
@@ -500,7 +489,7 @@ public class InputReader : MonoBehaviour
             back = false;
             hasBacked = false;
         }
-        if (!skippedFrame && enableJump) skippedFrame = true;
+        if (!skippedFrame) skippedFrame = true;
     }
 
     public void UpdateCameraInput()

@@ -29,7 +29,7 @@ public class EnemyDamage : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             CharacterManager characterManager = other.GetComponent<CharacterManager>();
-            TalkAction talkAction = characterManager.talkAction;
+            EventTextAction eventTextAction = characterManager.eventTextAction;
 
             if (trampolinePlatform)
             {
@@ -42,7 +42,7 @@ public class EnemyDamage : MonoBehaviour
                 {
                     Move_Throws move_Throws = Move_Throws.Instance;
                     Move_PhantomDash move_PhantomDash = Move_PhantomDash.Instance;
-                    if (!talkAction.isTalking && !move_PhantomDash.isPhantomDashing && (!move_Throws.isGettingDragged | move_Throws.isHoldingToRope))
+                    if (!eventTextAction.isActive && !move_PhantomDash.isPhantomDashing && (!move_Throws.isGettingDragged | move_Throws.isHoldingToRope))
                     {
                         characterManager.healthManager.HurtPlayer();
                     }
@@ -53,7 +53,7 @@ public class EnemyDamage : MonoBehaviour
                 if (!(!characterManager.isGrounded || (characterManager.afterLandingTimer > 0 && characterManager.afterLandingTimer < 5)))
                 {
                     Move_Throws move_Throws = Move_Throws.Instance;
-                    if (!talkAction.isTalking && (!move_Throws.isGettingDragged | move_Throws.isHoldingToRope))
+                    if (!eventTextAction.isActive && (!move_Throws.isGettingDragged | move_Throws.isHoldingToRope))
                     {
                         characterManager.healthManager.HurtPlayer();
                     }

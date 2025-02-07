@@ -139,7 +139,7 @@ public class GameLoader : MonoBehaviour
 
             if (levelToLoad == "StartScene")
             {
-                SceneStreamer.SetCurrentScene("Corailla");
+                SceneStreamer.SetCurrentScene("Desertis");
             }
         }
         /*else

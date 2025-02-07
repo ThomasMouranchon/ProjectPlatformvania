@@ -473,7 +473,7 @@ public class CharacterManager : MonoBehaviour
     private ItemsHandler itemsHandler;
     public UISoulEyesHandler uiSoulEyesHandler;
     public CinemachineInputProvider inputProvider;
-    public TalkAction talkAction;
+    [HideInInspector] public EventTextAction eventTextAction;
     [Space(10)]
 
     public ZoomHandler zoomHandlerTalk;
@@ -680,7 +680,7 @@ public class CharacterManager : MonoBehaviour
     private void Start()
     {
         alphaChanger = AlphaChanger.Instance;
-        talkAction = TalkAction.Instance;
+        eventTextAction = EventTextAction.Instance;
         inputReader = InputReader.Instance;
         movementActions = inputReader.movementActions;
 
@@ -1013,7 +1013,7 @@ public class CharacterManager : MonoBehaviour
 
             if (isDashing | isJumping | moveForm > 0 | (currentAnimation.normalizedTime >= 1.5f && idleValue > 1)
                 | (currentAnimation.normalizedTime >= 1.55f && idleValue == 11)
-                | (idleValue >= 1 && (isThrowing | altThrowing)) | (talkAction.isTalking && idleValue > 1))
+                | (idleValue >= 1 && (isThrowing | altThrowing)) | (eventTextAction.isActive && idleValue > 1))
             {
                 idleTimer = 0;
                 idleValue = 0;
@@ -2505,7 +2505,7 @@ public class CharacterManager : MonoBehaviour
         zoomHandlerTalk.Zoom(false, false);
         move_Throws.isTouchingCloud = false;
 
-        talkAction.EndTalk();
+        eventTextAction.EndText();
 
         while (currentAnimation.normalizedTime < 1)
         {
@@ -2515,9 +2515,9 @@ public class CharacterManager : MonoBehaviour
         soulAnim.SetBool("isCloseToDamage", false);
         soulAnim.SetBool("isCloseToBoss", false);
 
-        talkAction.isTalking = false;
-        talkAction.nextText = false;
-        talkAction.EndTalk();
+        eventTextAction.isActive = false;
+        eventTextAction.nextText = false;
+        eventTextAction.EndText();
         canTalk = false;
         canInteract = false;
         NPCDetector.Instance.animator.SetBool("canTalk", false);

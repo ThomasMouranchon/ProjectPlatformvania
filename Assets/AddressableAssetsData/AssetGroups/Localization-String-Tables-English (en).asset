@@ -35,6 +35,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en
     - Preload
+  - m_GUID: 158e77a0d20431d409557fa96eb8e63a
+    m_Address: ZoneTable_Desertis_en
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en
+    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 13c9be312a3ce5c40984c410b2e2ce28, type: 2}
   m_SchemaSet:

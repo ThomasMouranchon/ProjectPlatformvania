@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnlockItem : MonoBehaviour
+public class Event_UnlockItem : MonoBehaviour
 { 
     public enum Item
     {
@@ -19,7 +19,7 @@ public class UnlockItem : MonoBehaviour
     public bool targetedState = true;
     private ItemsHandler itemsHandler;
 
-    private void Start()
+    public void UnlockItem()
     {
         itemsHandler = ItemsHandler.Instance;
 
