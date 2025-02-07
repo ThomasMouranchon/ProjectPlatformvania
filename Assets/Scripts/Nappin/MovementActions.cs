@@ -107,15 +107,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Reserve"",
-                    ""type"": ""Button"",
-                    ""id"": ""e23d328c-272d-40b7-960a-e02afbbd1734"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -657,259 +648,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                     ""action"": ""CameraSwitch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""284a8a2e-7459-443d-8930-4712b94d670f"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""8b4f6b27-bfa2-4608-90ff-ad6abe07c69a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""0ae0d412-4454-4d1a-ab04-461566621f12"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""0db0f8af-2e3b-4f06-8263-8d9e1ef0aa44"",
-                    ""path"": ""<SwitchProControllerHID>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""SwitchController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""d3026c85-c548-45b2-a4c6-258948a414e1"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""a7d4e241-88f1-4f0c-b104-39a8428650c8"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""6623fcfe-17ef-44d6-ba62-4efbf720af50"",
-                    ""path"": ""<SwitchProControllerHID>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""SwitchController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""d1de7a98-0f2e-469b-be65-9b205135b56a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""58b40d03-e02b-47ce-ab22-ee89b75279c6"",
-                    ""path"": ""<Keyboard>/4"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""b6b66ba4-3596-4800-8a91-2c31d7ae9acd"",
-                    ""path"": ""<SwitchProControllerHID>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""SwitchController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""52e4dcbe-213d-4b15-b674-e80396f12cff"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""6e0c243c-a1f6-4e21-b975-b8109bf11abc"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Mouse&Keyboard"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""ed6a277b-070e-49eb-948d-3498f7618827"",
-                    ""path"": ""<SwitchProControllerHID>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""SwitchController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""fbd62d1d-a6ab-49f4-931c-c777cc1996b6"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""222dbd0f-e08a-470b-846a-56af0a0b36c2"",
-                    ""path"": ""<DualShockGamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PsController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""3f1e67c7-90cb-4075-be85-142fb409cfe2"",
-                    ""path"": ""<DualShockGamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PsController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""edd8d4f9-1453-4261-825e-c9cea586e452"",
-                    ""path"": ""<DualShockGamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PsController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""b280fc2e-003b-4ba3-95d5-e7609be9b3d5"",
-                    ""path"": ""<DualShockGamepad>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PsController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Arrows"",
-                    ""id"": ""a080b4fb-2036-4602-8e05-a6b4481ac037"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Up"",
-                    ""id"": ""dcdee714-9409-401f-9250-6d19c206475e"",
-                    ""path"": ""<XInputController>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XboxController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Down"",
-                    ""id"": ""27ed45c4-6e91-49c8-ad35-1fc34bf10610"",
-                    ""path"": ""<XInputController>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XboxController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Left"",
-                    ""id"": ""b58341d8-3f73-419e-aad5-c57bb4b01ce4"",
-                    ""path"": ""<XInputController>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XboxController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Right"",
-                    ""id"": ""ead8c7f7-e51b-4acd-bfea-f9b9bfed1fd8"",
-                    ""path"": ""<XInputController>/dpad/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XboxController"",
-                    ""action"": ""Reserve"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -1679,7 +1417,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         m_Gameplay_Bomb = m_Gameplay.FindAction("Bomb", throwIfNotFound: true);
         m_Gameplay_CameraSwitch = m_Gameplay.FindAction("CameraSwitch", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
-        m_Gameplay_Reserve = m_Gameplay.FindAction("Reserve", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Validate = m_Menu.FindAction("Validate", throwIfNotFound: true);
@@ -1763,7 +1500,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Bomb;
     private readonly InputAction m_Gameplay_CameraSwitch;
     private readonly InputAction m_Gameplay_Pause;
-    private readonly InputAction m_Gameplay_Reserve;
     public struct GameplayActions
     {
         private @MovementActions m_Wrapper;
@@ -1777,7 +1513,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         public InputAction @Bomb => m_Wrapper.m_Gameplay_Bomb;
         public InputAction @CameraSwitch => m_Wrapper.m_Gameplay_CameraSwitch;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
-        public InputAction @Reserve => m_Wrapper.m_Gameplay_Reserve;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1814,9 +1549,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @Reserve.started += instance.OnReserve;
-            @Reserve.performed += instance.OnReserve;
-            @Reserve.canceled += instance.OnReserve;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1848,9 +1580,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @Reserve.started -= instance.OnReserve;
-            @Reserve.performed -= instance.OnReserve;
-            @Reserve.canceled -= instance.OnReserve;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1993,7 +1722,6 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         void OnBomb(InputAction.CallbackContext context);
         void OnCameraSwitch(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnReserve(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

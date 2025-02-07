@@ -26,7 +26,6 @@ public class InputReader : MonoBehaviour
     [HideInInspector] public bool enableYoyo = true;
     [HideInInspector] public bool enableCameraSwitch = true;
     [HideInInspector] public bool enablePause = true;
-    [HideInInspector] public bool enableReserveInput = true;
     [HideInInspector] public bool enableValidate = true;
     [HideInInspector] public bool enableBack = true;
     [HideInInspector] public bool enableClick = true;
@@ -64,8 +63,6 @@ public class InputReader : MonoBehaviour
     public bool cameraSwitchHold;
     [HideInInspector]
     public bool pause;
-    [HideInInspector]
-    public Vector2 reserveInput;
     [HideInInspector]
     public bool validate;
     [HideInInspector]
@@ -111,7 +108,6 @@ public class InputReader : MonoBehaviour
     private InputAction yoyoAction;
     private InputAction cameraSwitchAction;
     private InputAction pauseAction;
-    private InputAction reserveInputAction;
     private InputAction validateAction;
     private InputAction backAction;
 
@@ -175,7 +171,6 @@ public class InputReader : MonoBehaviour
         UpdateYoyoInput();
         UpdateCameraSwitchInput();
         UpdatePauseInput();
-        UpdateReserveInput();
         UpdateValidateInput();
         UpdateBackInput();
 
@@ -245,7 +240,6 @@ public class InputReader : MonoBehaviour
         yoyoAction = playerInput.actions["Yoyo"];
         cameraSwitchAction = playerInput.actions["CameraSwitch"];
         pauseAction = playerInput.actions["Pause"];
-        reserveInputAction = playerInput.actions["Reserve"];
         validateAction = playerInput.actions["Validate"];
         backAction = playerInput.actions["Back"];
     }
@@ -399,14 +393,6 @@ public class InputReader : MonoBehaviour
             {
                 pause = false;
             }
-        }
-    }
-
-    public void UpdateReserveInput()
-    {
-        if (enableReserveInput)
-        {
-            reserveInput = reserveInputAction.ReadValue<Vector2>();
         }
     }
 

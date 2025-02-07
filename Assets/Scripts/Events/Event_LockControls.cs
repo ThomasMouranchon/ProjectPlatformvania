@@ -22,7 +22,6 @@ public class Event_LockControls : MonoBehaviour
         inputReader.enableDash = enableControls;
         inputReader.enableYoyo = enableControls;
         inputReader.enableCameraSwitch = enableControls;
-        inputReader.enableReserveInput = enableControls;
         pauseManager.canBePaused = enableControls;
     }
 }

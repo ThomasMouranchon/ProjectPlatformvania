@@ -263,7 +263,6 @@ public class CharacterManager : MonoBehaviour
     private bool cameraSwitch;
     public int cameraSwitchTimer;
     private bool cameraSwitchHold;
-    private Vector2 reserveInput;
     public int cameraSpeedValue;
 
     [HideInInspector]
@@ -2405,7 +2404,6 @@ public class CharacterManager : MonoBehaviour
 
         inputReader.enableDash = false;
         inputReader.enableJump = false;
-        inputReader.enableReserveInput = false;
         inputReader.enableCameraInput = false;
         inputReader.enableCameraSwitch = false;
         inputReader.enableYoyo = false;
@@ -2462,7 +2460,6 @@ public class CharacterManager : MonoBehaviour
             canMove = true;
             inputReader.enableDash = true;
             inputReader.enableJump = true;
-            inputReader.enableReserveInput = true;
             inputReader.enableCameraInput = true;
             inputReader.enableCameraSwitch = true;
             inputReader.enableYoyo = true;
