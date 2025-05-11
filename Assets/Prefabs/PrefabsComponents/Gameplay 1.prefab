@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 48
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -460,8 +460,6 @@ MonoBehaviour:
   playerOutline: {fileID: 2100000, guid: 8c42d43f13acae84cbc82198e570558c, type: 2}
   soulRenderers:
   - {fileID: 1346584948364618446}
-  - {fileID: 0}
-  - {fileID: 0}
   redPartRenderer: {fileID: 3774999903498934734}
   yellowPartRenderer: {fileID: 4616264369141605122}
   bluePartRenderer: {fileID: 1957012252997319718}
@@ -892,7 +890,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 48
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -931,7 +929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087560377677453916}
-  m_LocalRotation: {x: 0.23128706, y: 0.48113263, z: -0.13326602, w: 0.8350197}
+  m_LocalRotation: {x: 0.23128705, y: 0.48113266, z: -0.13326602, w: 0.8350197}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -970,7 +968,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 48
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -1088,7 +1086,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.01
   far clip plane: 5000
   field of view: 48
   orthographic: 0
@@ -1135,7 +1133,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: b8ffb8baf52cdd24d811196468af6120, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1425,7 +1423,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6127023694954885898}
-  m_LocalRotation: {x: 0.047018707, y: 0.49851227, z: -0.027091859, w: 0.8651826}
+  m_LocalRotation: {x: 0.047018703, y: 0.49851224, z: -0.027091857, w: 0.8651826}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1464,7 +1462,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 48
     OrthographicSize: 10
-    NearClipPlane: 0.1
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
@@ -1565,6 +1563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachineFreeLook: {fileID: 5153142799269306722}
   cinemachineCollider: {fileID: 4349453949538940686}
+  cinemachineInputProvider: {fileID: 999550687868631529}
   playerObject: {fileID: 1379337451605196394}
   cameraTarget: {fileID: 7967283863592068622}
   verticalStandardSpeed: 1.5
@@ -4661,6 +4660,14 @@ PrefabInstance:
     - target: {fileID: 3817137276638424951, guid: ae98a000e0b33534c8ace0d17cb1fc30, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.008315269
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903652906406190659, guid: ae98a000e0b33534c8ace0d17cb1fc30, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903652906406190659, guid: ae98a000e0b33534c8ace0d17cb1fc30, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4012275668251297796, guid: ae98a000e0b33534c8ace0d17cb1fc30, type: 3}
       propertyPath: m_LocalRotation.x

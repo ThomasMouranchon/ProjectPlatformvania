@@ -11,7 +11,6 @@ public class EventTextAction : MonoBehaviour
     public bool isActive, nextText;
     [Space(5)]
 
-    private bool validate, click, back, backHold;
     public Animator fastForwardAnim;
     public bool isFastForward;
     public int afterValidateTimer;
@@ -37,17 +36,9 @@ public class EventTextAction : MonoBehaviour
         EndText();
     }
 
-    void Update()
-    {
-        validate = inputReader.validate;
-        click = inputReader.click;
-        back = inputReader.back;
-        backHold = inputReader.backHold;
-    }
-
     private void FixedUpdate()
     {
-        if (isActive && (click | validate | backHold))
+        if (isActive && (inputReader.click | inputReader.validate | inputReader.backHold))
         {
             if (afterValidateTimer == 0)
             {
@@ -55,7 +46,7 @@ public class EventTextAction : MonoBehaviour
                 nextText = true;
             }
 
-            if (backHold) isFastForward = true;
+            if (inputReader.backHold) isFastForward = true;
             else isFastForward = false;
         }
         else

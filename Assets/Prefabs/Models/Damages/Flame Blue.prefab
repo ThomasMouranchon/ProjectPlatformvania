@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 2346390773595127155}
   - component: {fileID: 6054929358709653194}
   m_Layer: 2
-  m_Name: Flame
+  m_Name: Flame Blue
   m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

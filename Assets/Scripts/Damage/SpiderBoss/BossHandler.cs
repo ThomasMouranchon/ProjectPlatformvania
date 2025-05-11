@@ -142,7 +142,7 @@ public class BossHandler : MonoBehaviour
     {
         foreach (EventList eventList in events)
         {
-            if (eventList.eventisHappening) return false;
+            if (eventList.eventIsHappening) return false;
         }
         return true;
     }

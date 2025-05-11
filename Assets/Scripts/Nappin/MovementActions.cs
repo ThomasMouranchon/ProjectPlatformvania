@@ -32,7 +32,7 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                     ""type"": ""PassThrough"",
                     ""id"": ""9da37897-9fab-42a1-b5d8-6fefc98ba3e4"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""StickDeadzone(min=1.401298E-45,max=0.9)"",
+                    ""processors"": ""StickDeadzone(min=1.401298E-45)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -49,6 +49,15 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""317b44b6-69a2-4f16-8459-7ff071438999"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a14f5f14-d0ce-449a-8396-e4fdc64c4cc9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -761,44 +770,11 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""29d31728-7f59-4acc-8e06-5b37865f580c"",
-                    ""path"": ""<XInputController>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XboxController"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""efbc32d3-e268-488e-9a50-f73f87d20182"",
-                    ""path"": ""<DualShockGamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""PsController"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""51caa0b9-73fa-43e2-b9f0-2dbba12d787d"",
                     ""path"": ""<DualShockGamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PsController"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""027276ab-ca0e-4184-ae7f-dadc1e9b43a4"",
-                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""SwitchController"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -921,6 +897,50 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PsController"",
                     ""action"": ""Bomb"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""68373ea9-0821-41c8-bb72-04fa3bcc69ef"",
+                    ""path"": ""<XInputController>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XboxController"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd03ea53-69da-4c90-980f-ab5506a801d7"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PsController"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e1d3d2c-286f-4ae9-ba85-1fbf9b8ac6f1"",
+                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""SwitchController"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5166c871-e836-45c8-961f-c247ad622a63"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse&Keyboard"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1411,6 +1431,7 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_Camera = m_Gameplay.FindAction("Camera", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Glide = m_Gameplay.FindAction("Glide", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Yoyo = m_Gameplay.FindAction("Yoyo", throwIfNotFound: true);
@@ -1494,6 +1515,7 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_Camera;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Glide;
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Yoyo;
@@ -1507,6 +1529,7 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @Camera => m_Wrapper.m_Gameplay_Camera;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Glide => m_Wrapper.m_Gameplay_Glide;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Yoyo => m_Wrapper.m_Gameplay_Yoyo;
@@ -1531,6 +1554,9 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @Glide.started += instance.OnGlide;
             @Glide.performed += instance.OnGlide;
             @Glide.canceled += instance.OnGlide;
@@ -1562,6 +1588,9 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @Glide.started -= instance.OnGlide;
             @Glide.performed -= instance.OnGlide;
             @Glide.canceled -= instance.OnGlide;
@@ -1716,6 +1745,7 @@ public partial class @MovementActions: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnCamera(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnGlide(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnYoyo(InputAction.CallbackContext context);

@@ -4,6 +4,7 @@ using FIMSpace.Basics;
 using FIMSpace.FProceduralAnimation;
 using FIMSpace.FTail;
 using FIMSpace.GroundFitter;
+using PixelCrushers.SceneStreamer;
 using System.Collections;
 using System.Drawing;
 using UnityEditor;
@@ -253,16 +254,8 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public bool canTalk;
     [HideInInspector] public bool canInteract;
 
-    private Vector2 axisInput;
-    private bool jump;
-    private bool jumpHold;
-    private bool dash;
-    private bool maskPower;
-    private bool maskPowerHold;
     [HideInInspector] public bool lastFrameMaskPowerHold;
-    private bool cameraSwitch;
     public int cameraSwitchTimer;
-    private bool cameraSwitchHold;
     public int cameraSpeedValue;
 
     [HideInInspector]
@@ -443,6 +436,7 @@ public class CharacterManager : MonoBehaviour
 	[Space(10)]
 	*/
     public GameObject soulCharacter;
+    private GameObject parentObject;
     public SkinnedMeshRenderer soulRenderer;
     private AnimUpdater animUpdater;
     [Space(5)]
@@ -639,6 +633,8 @@ public class CharacterManager : MonoBehaviour
 
         cameraSwitchTimer = 21;
 
+        parentObject = transform.parent.gameObject;
+
         speedBoostHitbox.SetActive(false);
 
         neutralRotation = new Quaternion(0, 0, 0, 0);
@@ -704,24 +700,15 @@ public class CharacterManager : MonoBehaviour
         cameraInitialPosition = characterCamera.transform.position;
 
         canLedgeJump = true;
-        StartCoroutine(StartGameCoroutine(1));
+        StartCoroutine(StartGameCoroutine(1, true));
     }
 
     private void Update()
     {
-        axisInput = inputReader.axisInput;
-        jump = inputReader.jump;
-        jumpHold = inputReader.jumpHold;
-        dash = inputReader.dash;
-        maskPower = inputReader.yoyo;
-        maskPowerHold = inputReader.yoyoHold;
-        cameraSwitch = inputReader.cameraSwitch;
-        cameraSwitchHold = inputReader.cameraSwitchHold;
-
         if (canMove)
         {
-            stickIncline = Mathf.Abs(axisInput.y) + Mathf.Abs(axisInput.x);
-            stickInclineRealValue = Mathf.Abs(axisInput.y) + Mathf.Abs(axisInput.x);
+            stickIncline = Mathf.Abs(inputReader.axisInput.y) + Mathf.Abs(inputReader.axisInput.x);
+            stickInclineRealValue = Mathf.Abs(inputReader.axisInput.y) + Mathf.Abs(inputReader.axisInput.x);
         }
         else
         {
@@ -795,6 +782,16 @@ public class CharacterManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.DrawRay(fireBallSpawnPoint.transform.position, screenCenter.transform.position, Color.green);
+
+        // Local vectors
+        CheckJumpOnTrampoline();
+        CheckLedgeGrab();
+        CheckCeiling();
+        //if (!isGrounded) CheckJumpOnEnemy();
+        CheckStep();
+        CheckSlopeAndDirections();
+
         CheckGrounded();
         CheckGroundBelow();
         CheckFarFrontGround();
@@ -802,30 +799,19 @@ public class CharacterManager : MonoBehaviour
         CheckBackGround();
         CheckLeftGround();
         CheckRightGround();
-        CheckJumpOnTrampoline();
-        CheckLedgeGrab();
-        CheckCeiling();
-        CheckStep();
 
-        if (itemsHandler.enableWallJump) CheckWall();
-        else isTouchingWall = false;
-        
-        CheckSlopeAndDirections();
-
-        // Movement
-
-        MoveWalk();
-        if (!isRespawning) MoveRotation();
-        else if (isRespawning)
-        {
-            characterModel.transform.rotation = Quaternion.Euler(characterModel.transform.rotation.eulerAngles.x,
-                lastRotationAngle,
-                characterModel.transform.rotation.eulerAngles.z);
-        }
-        MoveJump();
         MoveDash();
         MoveMaskPower();
         MoveCameraSwitch();
+
+        if (itemsHandler.enableWallJump) CheckWall();
+        else isTouchingWall = false;
+
+        MoveWalk();
+        MoveRotation();
+
+        MoveJump();
+
 
         ApplyGravity();
 
@@ -840,7 +826,7 @@ public class CharacterManager : MonoBehaviour
 
         if ((afterJumpTimer > 0 && afterJumpTimer <= 8) | (afterWallJumpTimer > 0 && afterWallJumpTimer <= 6))
         {
-            Instantiate<ParticleSystem>(afterJumpEffect3D, characterModel.transform.position, neutralRotation);
+            Instantiate(afterJumpEffect3D, characterModel.transform.position, neutralRotation);
             jumpingTrail.enabled = true;
         }
         else if ((afterJumpTimer > 0 && afterJumpTimer <= 20) | (afterWallJumpTimer > 0 && afterWallJumpTimer <= afterWallJumpTimerLimit))
@@ -850,6 +836,7 @@ public class CharacterManager : MonoBehaviour
         else
         {
             jumpingTrail.enabled = false;
+            //ledgeJump = false;
         }
 
         if (afterJumpTimer > 15 | isGliding | isDashing)
@@ -878,7 +865,7 @@ public class CharacterManager : MonoBehaviour
 
         currentAnimation = soulAnim.GetCurrentAnimatorStateInfo(0);
 
-        if (!isGrounded && !move_Throws.isGroundedForSlide)
+        if (!isGrounded)
         {
             wasAirborned = false;
             landed = false;
@@ -889,56 +876,45 @@ public class CharacterManager : MonoBehaviour
             if (afterGlideTimer < 10) afterGlideTimer++;
 
             if (isDiving) collider.radius = 1;
+            else if (isAirDashing) collider.radius = 0.5f;
             else collider.radius = 0.25f;
-
-            if (isGliding)
-            {
-                foreach (TailAnimator2 anim in animUpdater.frontClothTailAnims)
-                {
-                    anim.TailAnimatorAmount = 0;
-                }
-            }
-            else
-            {
-                foreach (TailAnimator2 anim in animUpdater.frontClothTailAnims)
-                {
-                    anim.TailAnimatorAmount = 0.5f;
-                }
-            }
 
             if (airbornedTimer > 25 && (afterWallJumpTimer == 0 | afterWallJumpTimer > 15))
             {
                 ledgeJump = false;
             }
 
-            if (collider.height < 2.17f)
-            {
-                collider.height += 0.2f;
-            }
+            if (collider.height < 2.17f) collider.height += 0.2f;
+
             if (collider.center.y < 0)
             {
                 collider.center += new Vector3(0, 0.1f, 0);
             }
 
+            //groundCollider.enabled = true;
+
             if (Physics.Raycast(groundDetecter.transform.position, Vector3.up, distToGround + 12, groundMask) &&
                 Physics.Raycast(frontPoint.transform.position, Vector3.up, distToGround + 12, groundMask) &&
                 Physics.Raycast(backPoint.transform.position, Vector3.up, distToGround + 12, groundMask) &&
                 Physics.Raycast(leftPoint.transform.position, Vector3.up, distToGround + 12, groundMask) &&
-                Physics.Raycast(rightPoint.transform.position, Vector3.up, distToGround + 12, groundMask) && isJumping)
+                Physics.Raycast(rightPoint.transform.position, Vector3.up, distToGround + 12, groundMask))
             {
-                soulAnim.CrossFade("Player_Scale_StretchSmallJump", 0.05f, 9);
+                if (soulAnim.GetCurrentAnimatorStateInfo(9).IsName("Player_Scale_StretchJump"))
+                {
+                    soulAnim.CrossFade("Player_Scale_StretchSmallJump", 0.05f, 9);
+                }
             }
 
             idleTimer = 0;
             if (frontIsGround | backIsGround | leftIsGround | rightIsGround | isSliding)
             {
-                isGrounded = true;
+                isGrounded = !isCloseToWallForAir;
             }
 
             soulLegsAnim.enabled = false;
             endedJumpTimer = 0;
         }
-        else if (isGrounded | move_Throws.isGroundedForSlide)
+        else if (isGrounded)
         {
             isGliding = false;
 
@@ -952,24 +928,9 @@ public class CharacterManager : MonoBehaviour
                 isJumping = false;
                 isAirJumping = false;
                 isLongJumping = false;
-                if (!jump && !jumpHold && afterJumpTimer > 5)
+                if (!inputReader.jump && !inputReader.jumpHold && afterJumpTimer > 5)
                 {
-                    switch (moveForm)
-                    {
-                        case 1:
-                        case 2:
-                        case 3:
-                            soulAnim.CrossFade("Player_LandingWalk", 0.05f);
-                            break;
-                        case 4:
-                        case 5:
-                        case 6:
-                            soulAnim.CrossFade("Player_LandingRun", 0.05f);
-                            break;
-                        default:
-                            soulAnim.CrossFade("Player_LandingIdle", 0.05f);
-                            break;
-                    }
+                    soulAnim.CrossFade("Player_LandingIdleDive", 0.05f);
                 }
             }
             afterGlideTimer = 10;
@@ -993,23 +954,28 @@ public class CharacterManager : MonoBehaviour
                 soulLegsAnim.enabled = true;
             }
 
-            if (collider.height < 2.17f)
+            if (currentAnimation.IsName("Player_LandingIdleDive"))
             {
-                collider.height += 0.2f;
+                if (collider.height < 0.97f) collider.height += 0.2f;
+                else if (collider.height >= 1.27f) collider.height -= 0.2f;
+
+                if (collider.center.y < -0.45f) collider.center += new Vector3(0, 0.1f, 0);
+                else if (collider.center.y > -0.35f) collider.center -= new Vector3(0, 0.1f, 0);
             }
-            if (collider.center.y < 0)
+            else
             {
-                collider.center += new Vector3(0, 0.1f, 0);
+                if (collider.height < 2.17f) collider.height += 0.2f;
+                else collider.height = 2.17f;
+
+                if (collider.center.y < 0)
+                {
+                    collider.center += new Vector3(0, 0.1f, 0);
+                }
             }
 
             groundCollider.enabled = false;
 
-            foreach (TailAnimator2 anim in animUpdater.frontClothTailAnims)
-            {
-                anim.TailAnimatorAmount = 0.5f;
-            }
-
-            if (!isDashing && !landed && !isJumping && moveForm == 0 && (idleTimer <= idleTimerLimit)) idleTimer++;
+            if (!isDashing && !landed && !isJumping && moveForm == 0 && ((idleTimer <= idleTimerLimit))) idleTimer++;
 
             if (isDashing | isJumping | moveForm > 0 | (currentAnimation.normalizedTime >= 1.5f && idleValue > 1)
                 | (currentAnimation.normalizedTime >= 1.55f && idleValue == 11)
@@ -1018,7 +984,7 @@ public class CharacterManager : MonoBehaviour
                 idleTimer = 0;
                 idleValue = 0;
             }
-            else if (idleTimer == idleTimerLimit)
+            else if ((idleTimer == idleTimerLimit))
             {
                 idleValue = Random.Range(1, 4);
             }
@@ -1087,8 +1053,8 @@ public class CharacterManager : MonoBehaviour
             }
         }
 
-        if ((isGrounded | move_Throws.isGroundedForSlide) && !isAirDashing && (!wasAirborned | (isJumping && isCloseToCeilingForJump) | (isJumping && afterUnclimbableSlopeJumpTimer == 0 && isSlidingDown)
-            /*((currentAnimation.IsName("Player_Jump") | currentAnimation.IsName("Player_JumpAlternate")) && currentAnimation.normalizedTime > 0.7f)*/ ))
+        if ((isGrounded) && !isAirDashing && (!wasAirborned |
+            (isJumping && isCloseToCeilingForJump) | (isJumping && afterUnclimbableSlopeJumpTimer == 0 && isSlidingDown)))
         {
             if (!isCloseToCeilingForJump)
             {
@@ -1096,21 +1062,27 @@ public class CharacterManager : MonoBehaviour
                 {
                     afterDiveLandingTimer++;
 
-                    Instantiate<ParticleSystem>(diveLandingEffect3D, characterModel.transform.position, neutralRotation);
+                    Instantiate(diveLandingEffect3D, characterModel.transform.position, neutralRotation);
 
                     if (cameraShake && !isRespawning) impulseSource.GenerateImpulse(1.5f);
                 }
-                else
+                else if (afterJumpTimer == 0 | afterJumpTimer > 5)
                 {
-                    Instantiate<ParticleSystem>(landingEffect3D, characterModel.transform.position, neutralRotation);
+                    Instantiate(landingEffect3D, characterModel.transform.position, neutralRotation);
                 }
             }
             if (!((currentAnimation.IsName("Player_Jump") | currentAnimation.IsName("Player_JumpAlternate") |
-                currentAnimation.IsName("Player_SlideJump") | currentAnimation.IsName("Player_FrontSlideJump")) &&
+                currentAnimation.IsName("Player_SlideJump") | currentAnimation.IsName("Player_FrontSlideJump") |
+                currentAnimation.IsName("Player_ChargedJump") | currentAnimation.IsName("Player_ForwardJump")) &&
                 currentAnimation.normalizedTime > 0.7f)) wasAirborned = true;
-            isJumping = false;
-            isAirJumping = false;
-            isLongJumping = false;
+
+            if (afterJumpTimer == 0 | afterJumpTimer > 5)
+            {
+                isJumping = false;
+                isAirJumping = false;
+                isLongJumping = false;
+            }
+
             if (afterGroundedDashTimer > 30)
             {
                 isDashing = false;
@@ -1121,16 +1093,25 @@ public class CharacterManager : MonoBehaviour
             afterLandingTimer++;
         }
 
+        bool jumpAnim = false;
 
-        if (((currentAnimation.IsName("Player_Jump") | currentAnimation.IsName("Player_JumpAlternate")) &&
+        if ((currentAnimation.IsName("Player_Jump") | currentAnimation.IsName("Player_JumpAlternate") |
+            (currentAnimation.IsName("Player_ChargedJump")) &&
             currentAnimation.normalizedTime > 0.7f) |
-            ((currentAnimation.IsName("Player_SlideJump") | currentAnimation.IsName("Player_FrontSlideJump")) &&
-            currentAnimation.normalizedTime > 0.5f) | (isCloseToWall && moveForm > 0))
+            (currentAnimation.IsName("Player_SlideJump") | currentAnimation.IsName("Player_FrontSlideJump")) &&
+            currentAnimation.normalizedTime > 0.5f | (currentAnimation.IsName("Player_ForwardJump") &&
+            currentAnimation.normalizedTime > 0.3f)) jumpAnim = true;
+
+        if (jumpAnim | (isCloseToWall && moveForm > 0))
         {
-            isJumping = false;
-            isAirJumping = false;
-            isLongJumping = false;
-            if (isGrounded && !(isCloseToWall && moveForm > 0))
+            if (!isCloseToWallForAir && !isGrounded)
+            {
+                isJumping = false;
+                isAirJumping = false;
+                isLongJumping = false;
+            }
+
+            if (isGrounded && (!(isCloseToWall && moveForm > 0) | jumpAnim))
             {
                 afterLandingTimer = 1;
                 switch (moveForm)
@@ -1152,49 +1133,61 @@ public class CharacterManager : MonoBehaviour
                 }
             }
         }
-        /*
-    	if ((isGrounded | move_MaskPower.isGroundedForSlide) && !wasAirborned && finishedJumpCoroutine && !isAirDashing)
-    	{
-        	isJumping = false;
-    	}*/
 
-        if (afterLandingTimer > 0 && afterLandingTimer <= 12)
+        if (afterLandingTimer > 0 && afterLandingTimer <= 15)
         {
             afterLandingTimer++;
-            landed = true;
 
-            jumpingTrail.enabled = false;
+            if (afterLandingTimer > 3)
+            {
+                landed = true;
 
-            if (afterLandingTimer == 12)
-            {
-                isBouncing = false;
-                ledgeJump = false;
-            }
+                jumpAnim = false;
 
-            afterGroundedDashTimer = 30;
-            if (afterDiveLandingTimer == 0 && afterLandingTimer < 7)
-            {
-                stretchAnimationScript.DoStretch("StretchLandAnimation");
-                soulAnim.CrossFade("Player_Scale_StretchLand", 0, 9);
-            }
-            else if (isCloseToCeilingForJump && !isDashing)
-            {
-                switch (moveForm)
+                if (currentAnimation.IsName("Player_Jump") | currentAnimation.IsName("Player_JumpAlternate") |
+                currentAnimation.IsName("Player_ChargedJump") | currentAnimation.IsName("Player_ForwardJump") |
+                currentAnimation.IsName("Player_SlideJump") | currentAnimation.IsName("Player_FrontSlideJump")) jumpAnim = true;
+
+                if (!jumpAnim && !inputReader.jump && !inputReader.jumpHold && jumpHoldTimer == 0 && inputReader.currentJumpTimer == 0)
                 {
-                    case 1:
-                    case 2:
-                    case 3:
-                        soulAnim.CrossFade("Player_LandingWalk", 0.05f);
-                        break;
-                    case 4:
-                    case 5:
-                    case 6:
-                        soulAnim.CrossFade("Player_LandingRun", 0.05f);
-                        break;
-                    default:
-                        soulAnim.CrossFade("Player_LandingIdle", 0.05f);
-                        break;
+                    isJumping = false;
+                    isAirJumping = false;
+                    isLongJumping = false;
+                }
 
+                jumpingTrail.enabled = false;
+
+                if (afterLandingTimer == 15)
+                {
+                    isBouncing = false;
+                    ledgeJump = false;
+                }
+
+                afterGroundedDashTimer = 30;
+                if ((afterDiveLandingTimer == 0 | isDiving) && afterLandingTimer < 7)
+                {
+                    stretchAnimationScript.DoStretch("StretchLandAnimation");
+                    soulAnim.CrossFade("Player_Scale_StretchLand", 0, 9);
+                }
+                else if (isCloseToCeilingForJump && !isDashing && !isDiving)
+                {
+                    switch (moveForm)
+                    {
+                        case 1:
+                        case 2:
+                        case 3:
+                            soulAnim.CrossFade("Player_LandingWalk", 0.05f);
+                            break;
+                        case 4:
+                        case 5:
+                        case 6:
+                            soulAnim.CrossFade("Player_LandingRun", 0.05f);
+                            break;
+                        default:
+                            soulAnim.CrossFade("Player_LandingIdle", 0.05f);
+                            break;
+
+                    }
                 }
             }
         }
@@ -1205,17 +1198,18 @@ public class CharacterManager : MonoBehaviour
             leftGroundDuringDash = false;
         }
 
-        if (afterDiveLandingTimer == 1)
-        {
-            stretchAnimationScript.DoStretch("StretchDiveLandAnimation");
-            soulAnim.CrossFade("Player_Scale_StretchDiveLand", 0, 9);
-        }
-
         if (afterDiveLandingTimer > 0 && afterDiveLandingTimer <= 12)
         {
+            if (afterDiveLandingTimer == 1)
+            {
+                rigidbody.isKinematic = true;
+                stretchAnimationScript.DoStretch("StretchDiveLandAnimation");
+                soulAnim.CrossFade("Player_Scale_StretchDiveLand", 0, 9);
+            }
+            else rigidbody.isKinematic = false;
             afterDiveLandingTimer++;
+            landed = true;
             afterGroundedDashTimer = 30;
-            //rigidbody.isKinematic = true;
         }
         else
         {
@@ -1266,8 +1260,6 @@ public class CharacterManager : MonoBehaviour
 
         if (isGroundDashing && !isGrounded) leftGroundDuringDash = true;
 
-        //characterModelRotationSmooth = isWallSliding || isDashing ? 100 : (!isGliding ? initialcharacterModelRotationSmooth : 0.1f);
-
         if (isWallSliding || isDashing)
         {
             characterModelRotationSmooth = 100;
@@ -1278,10 +1270,6 @@ public class CharacterManager : MonoBehaviour
             characterModelRotationSmooth = glideRotationSmooth;
             ledgeJump = false;
         }
-        else if (isGrounded && isSliding)
-        {
-            characterModelRotationSmooth = slideRotationSmooth;
-        }
         else characterModelRotationSmooth = initialcharacterModelRotationSmooth;
 
         if (additionalGravity <= -210)
@@ -1289,8 +1277,8 @@ public class CharacterManager : MonoBehaviour
             isDiving = true;
             ledgeJump = false;
 
-            if (additionalGravity > -270) diveTrailEffect1.Play();
-            else if (additionalGravity > -330) diveTrailEffect2.Play();
+            if (additionalGravity > -330) diveTrailEffect1.Play();
+            else if (additionalGravity > -990) diveTrailEffect2.Play();
             else diveTrailEffect3.Play();
         }
         else
@@ -1301,21 +1289,27 @@ public class CharacterManager : MonoBehaviour
             diveTrailEffect3.Stop();
         }
 
+
         if (cameraSwitchTimer >= 0 && cameraSwitchTimer <= 20) cameraSwitchTimer++;
+
+        if (healthManager.isHurt && !isDashing)
+        {
+            soulAnim.CrossFade("Player_Hurt", 0.0f, 0);
+        }
 
         if (afterDashTimer >= 6 && isGroundDashing && leftGroundDuringDash && landed)
         {
             if (stickIncline == 0)
             {
-                soulAnim.CrossFade("Player_LandingIdleDash", 0.05f, 0, 0.3f);
+                soulAnim.CrossFade("Player_LandingIdleCounter", 0.05f, 0, 0.3f);
             }
             else if (stickIncline >= 0.55f)
             {
-                soulAnim.CrossFade("Player_LandingRunDash", 0.05f, 0, 0.3f);
+                soulAnim.CrossFade("Player_LandingRunCounter", 0.05f, 0, 0.3f);
             }
             else
             {
-                soulAnim.CrossFade("Player_LandingWalkDash", 0.05f, 0, 0.3f);
+                soulAnim.CrossFade("Player_LandingWalkCounter", 0.05f, 0, 0.3f);
             }
             isGroundDashing = false;
         }
@@ -1323,44 +1317,20 @@ public class CharacterManager : MonoBehaviour
         {
             if (stickIncline == 0)
             {
-                soulAnim.CrossFade("Player_LandingIdleDash", 0.05f, 0, 0.15f);
+                soulAnim.CrossFade("Player_LandingIdleCounter", 0.05f, 0, 0.15f);
             }
             else if (stickIncline >= 0.55f)
             {
-                soulAnim.CrossFade("Player_LandingRunDash", 0.05f, 0, 0.15f);
+                soulAnim.CrossFade("Player_LandingRunCounter", 0.05f, 0, 0.15f);
             }
             else
             {
-                soulAnim.CrossFade("Player_LandingWalkDash", 0.05f, 0, 0.15f);
+                soulAnim.CrossFade("Player_LandingWalkCounter", 0.05f, 0, 0.15f);
             }
             isAirDashing = false;
         }
 
         AnimUpdate();
-
-        /*
-    	IEnumerator LerpToPosition(Vector3 newPosition)
-    	{
-        	/*if (useRelativeSpeed)
-        	{
-            	float totalDistance = farRight.position.x - farLeft.position.x;
-            	float diff = transform.position.x - farLeft.position.x;
-            	float multiplier = diff / totalDistance;
-            	lerpSpeed *= multiplier;
-        	}*/
-        /*
-        	float time = 0.0f;
-        	Vector3 startingPos = cameraTarget.transform.position;
-        	while (time < 1.0f)
-        	{
-            	time += Time.deltaTime * (Time.timeScale / normalLerpSpeed);
-            	//time += lerpSpeed / 100;
-
-            	cameraTarget.transform.position = Vector3.Lerp(startingPos, newPosition, time);
-        	}
-
-        	yield return 0;
-    	}*/
     }
 
     #region Checks
@@ -1876,15 +1846,15 @@ public class CharacterManager : MonoBehaviour
 
                 slopeDot = Vector3.Dot(slopeHit.normal, tmpForward);
 
-                Vector3 movement = new Vector3(axisInput.x, 0.0f, axisInput.y).normalized;
+                Vector3 movement = new Vector3(inputReader.axisInput.x, 0.0f, inputReader.axisInput.y).normalized;
 
                 movement = transform.TransformDirection(movement);
 
-                if ((jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && !ledgeJump && currentSurfaceAngle > 28 && !isWallSliding && afterJumpTimer < 6 && afterDiveLandingTimer == 0)
+                if ((inputReader.jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && !ledgeJump && currentSurfaceAngle > 28 && !isWallSliding && afterJumpTimer < 6 && afterDiveLandingTimer == 0)
                 {
                     afterSlopeJumpTimer = 1;
                 }
-                if ((jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && !ledgeJump && currentSurfaceAngle > maxClimbableSlopeAngle && !isWallSliding && afterJumpTimer < 6 && afterDiveLandingTimer == 0)
+                if ((inputReader.jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && !ledgeJump && currentSurfaceAngle > maxClimbableSlopeAngle && !isWallSliding && afterJumpTimer < 6 && afterDiveLandingTimer == 0)
                 {
                     afterUnclimbableSlopeJumpTimer = 1;
                 }
@@ -1942,18 +1912,18 @@ public class CharacterManager : MonoBehaviour
 
     private void MoveWalk()
     {
-        if (axisInput.magnitude > stickInclineDeadZone && (!move_Throws.isGettingDragged | (move_Throws.isGettingDragged && move_Throws.isHoldingToRope)))
+        if (inputReader.axisInput.magnitude > stickInclineDeadZone && (!move_Throws.isGettingDragged | (move_Throws.isGettingDragged && move_Throws.isHoldingToRope)))
         {
             if (!fixedDirectionDash)
             {
                 if (isSliding)
                 {
-                    float angleCible = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
+                    float angleCible = Mathf.Atan2(inputReader.axisInput.x, inputReader.axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
                     targetAngle = Mathf.Lerp(targetAngle, angleCible, 0.1f);
                 }
                 else
                 {
-                    targetAngle = Mathf.Atan2(axisInput.x, axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
+                    targetAngle = Mathf.Atan2(inputReader.axisInput.x, inputReader.axisInput.y) * Mathf.Rad2Deg + characterCamera.transform.eulerAngles.y;
                 }
             }
             if (runBoostTimer >= runBoostTimerLimit)
@@ -2097,7 +2067,7 @@ public class CharacterManager : MonoBehaviour
             if (jumpHoldTimer == 0 && isGrounded && airbornedTimer == 0 && isSlidingDown
                 && (afterLandingTimer == 0 | afterLandingTimer > 1) && !ledgeJump && !isWallSliding && afterJumpTimer < 6 && afterJumpTimer != 1 && afterDiveLandingTimer == 0)
             {
-                if (jump)
+                if (inputReader.jump)
                 {
                     RaycastHit slopeHit;
                     if (Physics.SphereCast(transform.position, slopeCheckerThrashold, Vector3.down, out slopeHit, distToGround + distToGroundForSlopes, groundMask))
@@ -2137,7 +2107,7 @@ public class CharacterManager : MonoBehaviour
                 }
             }
             //jumped
-            else if ((jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && (isGrounded | airbornedTimer < 8) && (afterLandingTimer == 0 | afterLandingTimer > 1) &&
+            else if ((inputReader.jump | inputReader.currentJumpTimer > 0) && jumpHoldTimer == 0 && (isGrounded | airbornedTimer < 8) && (afterLandingTimer == 0 | afterLandingTimer > 1) &&
                 !isWallSliding && afterJumpTimer == 0 && afterDiveLandingTimer == 0 && !isBouncing && !canTalk && !canInteract && !isCloseToCeiling && !ledgeJump && !isSlidingDown &&
                 (currentSurfaceAngle <= maxClimbableSlopeAngle | currentSurfaceAngle == 1 | (!isGrounded && afterNormalSlopeLeavingTimer == 0)))
             {
@@ -2194,7 +2164,7 @@ public class CharacterManager : MonoBehaviour
                     Instantiate<ParticleSystem>(jumpEffect3D, characterModel.transform.position, neutralRotation);
                 }
             }
-            else if (jumpHold && jumpHoldTimer > 0 && (isGrounded | airbornedTimer < 8) && !isWallSliding &&
+            else if (inputReader.jumpHold && jumpHoldTimer > 0 && (isGrounded | airbornedTimer < 8) && !isWallSliding &&
                 afterJumpTimer < 6 && afterDiveLandingTimer == 0 && !isBouncing && !isCloseToCeiling)
             {
                 jumpHoldTimer++;
@@ -2214,7 +2184,7 @@ public class CharacterManager : MonoBehaviour
                 }
             }
             //jumped from wall
-            else if ((jump | inputReader.currentJumpTimer > 0) && !isGrounded && isWallSliding && !ledgeJump && afterDashTimer == 0)
+            else if ((inputReader.jump | inputReader.currentJumpTimer > 0) && !isGrounded && isWallSliding && !ledgeJump && afterDashTimer == 0)
             {
                 if (tryingToClimbTimer < tryingToClimbTimerLimit) rigidbody.velocity += wallNormal * horizontalJumpFromWallMultiplier + Vector3.up * verticalJumpFromWallMultiplier * multiplierVerticalLeap;
                 else rigidbody.velocity += wallNormal * horizontalJumpFromWallMultiplier;
@@ -2238,7 +2208,7 @@ public class CharacterManager : MonoBehaviour
 
                 soulAnim.CrossFade("Player_WallJump", 0, 0);
             }
-            else if (jumpHold && wallJumpHoldTimer > 0 && !isGrounded && !isWallSliding && afterWallJumpTimer > 0 && afterWallJumpTimer < 10
+            else if (inputReader.jumpHold && wallJumpHoldTimer > 0 && !isGrounded && !isWallSliding && afterWallJumpTimer > 0 && afterWallJumpTimer < 10
                 && !ledgeJump && afterDashTimer == 0)
             {
                 wallJumpHoldTimer++;
@@ -2254,7 +2224,7 @@ public class CharacterManager : MonoBehaviour
                 }
             }
             // Glide
-            else if (jump && itemsHandler.enableGlide && !isGrounded && !landed && !isTouchingSlope && (afterWallJumpTimer == 0 | afterWallJumpTimer >= 15)
+            else if (inputReader.jump && itemsHandler.enableGlide && !isGrounded && !landed && !isTouchingSlope && (afterWallJumpTimer == 0 | afterWallJumpTimer >= 15)
                 && !isTouchingWall && !isGliding && airbornedTimer > 9 && afterGlideTimer >= 10
                 && (afterUnclimbableSlopeJumpTimer == 0 | afterUnclimbableSlopeJumpTimer > 20))
             {
@@ -2277,7 +2247,7 @@ public class CharacterManager : MonoBehaviour
                     soulAnim.CrossFade("Player_GlideFall", 0.0f, 3);
                 }
             }
-            else if (jump && isGliding && !isGrounded && afterGlideTimer >= 10)
+            else if (inputReader.jump && isGliding && !isGrounded && afterGlideTimer >= 10)
             {
                 isGliding = false;
                 afterGlideTimer = 0;
@@ -2292,7 +2262,7 @@ public class CharacterManager : MonoBehaviour
 
     public void MoveDash()
     {
-        if (dash && itemsHandler.enableDash && !isDashing && canDash && !isCloseToCeiling && !isWallSliding && !isSlidingDown
+        if (inputReader.dash && itemsHandler.enableDash && !isDashing && canDash && !isCloseToCeiling && !isWallSliding && !isSlidingDown
             && (afterUnclimbableSlopeJumpTimer == 0 | afterUnclimbableSlopeJumpTimer > 20))
         {
             isDashing = true;
@@ -2312,7 +2282,7 @@ public class CharacterManager : MonoBehaviour
 
                 Instantiate<ParticleSystem>(dashParticles, characterModel.transform.position, characterModel.transform.rotation);
 
-                rigidbody.velocity += forward * horizontalDashMultiplier;
+                rigidbody.velocity = forward * horizontalDashMultiplier;
                 fixedDirectionDash = true;
 
                 soulAnim.CrossFade("Player_DashNeutral", 0.05f, 0);
@@ -2328,9 +2298,21 @@ public class CharacterManager : MonoBehaviour
                 isGliding = false;
                 wasAirborned = true;
 
-                if (move_Throws.dragReturnSpeedXZ > 0) rigidbody.velocity += forward * 10;
-                rigidbody.velocity += forward * horizontalAirDashMultiplier + Vector3.up * verticalAirDashMultiplier;
+                float dashCheckDistance = 20;
+                float wallFactor = 1f;
 
+                if (Physics.Raycast(transform.position, forward, out RaycastHit hit, dashCheckDistance))
+                {
+                    wallFactor = hit.distance / dashCheckDistance;
+                }
+
+                Vector3 dashVelocity = forward * 10 * wallFactor;
+                if (move_Throws.dragReturnSpeedXZ > 0) rigidbody.velocity = dashVelocity;
+                else
+                {
+                    dashVelocity = forward * horizontalAirDashMultiplier * wallFactor;
+                    rigidbody.velocity = forward * horizontalAirDashMultiplier + Vector3.up * verticalAirDashMultiplier;
+                }
                 fixedDirectionDash = true;
 
                 soulAnim.CrossFade("Player_DashRunAerial", 0.05f, 0);
@@ -2368,8 +2350,8 @@ public class CharacterManager : MonoBehaviour
     {
         move_CameraAim.CameraAim();
 
-        if (cameraSwitch && cameraSwitchTimer > 20) cameraSwitchTimer = 0;
-        else if (cameraSwitch) cameraRecenter.recenter = true;
+        if (inputReader.cameraSwitch && cameraSwitchTimer > 20) cameraSwitchTimer = 0;
+        else if (inputReader.cameraSwitch) cameraRecenter.recenter = true;
         else
         {
             cameraSwitcher.ChangeCamera(false);
@@ -2381,23 +2363,29 @@ public class CharacterManager : MonoBehaviour
 
     public void StartGame(float time)
     {
-        StartCoroutine(StartGameCoroutine(time));
+        StartCoroutine(StartGameCoroutine(time, false));
     }
 
 
     #region Coroutines
 
-    public IEnumerator StartGameCoroutine(float time)
+    public IEnumerator StartGameCoroutine(float time, bool isLoading)
     {
+        SaveManager saveManager = SaveManager.Instance;
+
         isRespawning = true;
         canMove = false;
         rigidbody.velocity = Vector3.zero;
         isDashing = false;
         isGliding = false;
-        if (SaveManager.Instance.startedGame) additionalGravity = -210;
-        else additionalGravity = 0;
-
-        isDiving = SaveManager.Instance.startedGame;
+        if (saveManager.startedGame) additionalGravity = -210;
+        else
+        {
+            transform.rotation = Quaternion.identity;
+            additionalGravity = 0;
+            soulAnim.CrossFade("Player_Idle", 0);
+        }
+        isDiving = saveManager.startedGame;
         isAirDashing = false;
         dashRecoilTimer = 0;
         afterDashTimer = 0;
@@ -2416,13 +2404,44 @@ public class CharacterManager : MonoBehaviour
 
         zoomHandlerTalk.Zoom(false, false);
 
+        Quaternion respawnRotation = new Quaternion(
+            saveManager.activatedTeleportationsRotationsX[saveManager.lastTeleportPoint],
+            saveManager.activatedTeleportationsRotationsY[saveManager.lastTeleportPoint],
+            saveManager.activatedTeleportationsRotationsZ[saveManager.lastTeleportPoint],
+            saveManager.activatedTeleportationsRotationsW[saveManager.lastTeleportPoint]
+        );
+
+        Vector3 respawnPosition = new Vector3(
+            saveManager.activatedTeleportationsPositionsX[saveManager.lastTeleportPoint],
+            saveManager.activatedTeleportationsPositionsY[saveManager.lastTeleportPoint],
+            saveManager.activatedTeleportationsPositionsZ[saveManager.lastTeleportPoint]
+        );
+
+        float rotationY = respawnRotation.eulerAngles.y;
+        //cameraFreeLookController.cinemachineFreeLook.m_XAxis.Value = rotationY;
+
+        if (saveManager.lastTeleportPoint != 0) transform.position = respawnPosition;
+
+        if (!isLoading)
+        {
+            StartCoroutine(WaitToResetCamera());
+            if (saveManager.lastTeleportPoint != 0) healthManager.respawnRotation = respawnRotation;
+        }
+
+        healthManager.respawnPosition = respawnPosition;
+
         cameraFreeLookController.cinemachineFreeLook.m_XAxis.Value = healthManager.respawnRotation.eulerAngles.y;
         cameraFreeLookController.cinemachineFreeLook.m_YAxis.Value = 0.5f;
 
-        targetAngle = healthManager.respawnRotation.eulerAngles.y;
-        lastRotationAngle = healthManager.respawnRotation.eulerAngles.y;
+        targetAngle = respawnRotation.eulerAngles.y;
+        lastRotationAngle = respawnRotation.eulerAngles.y;
 
-        if (SaveManager.Instance.startedGame) soulAnim.CrossFade("Player_Dive", 0);
+        if (saveManager.startedGame) soulAnim.CrossFade("Player_Dive", 0);
+        else
+        {
+            string currentScene = saveManager.activatedTeleportationsZone[saveManager.lastTeleportPoint].ToString();
+            SceneStreamer.SetCurrentScene(currentScene);
+        }
 
         soulAnim.SetBool("isCloseToDamage", false);
         soulAnim.SetBool("isCloseToBoss", false);
@@ -2443,15 +2462,17 @@ public class CharacterManager : MonoBehaviour
         rigidbody.velocity += Vector3.up * 10;
         rigidbody.isKinematic = false;
 
+        transform.parent = parentObject.transform;
+
         yield return new WaitForSeconds(time / 4);
 
-        if (SaveManager.Instance.startedGame)
+        /*if (SaveManager.Instance.startedGame)
         {
             foreach (ParticleSystem effect in respawnEffects)
             {
                 effect.Play();
             }
-        }
+        }*/
 
         yield return new WaitForSeconds(time / 4 * 3);
 
@@ -2544,6 +2565,11 @@ public class CharacterManager : MonoBehaviour
     public void DeathEffect()
     {
         StartCoroutine(DeathCoroutine());
+    }
+
+    public void ResetParent()
+    {
+        transform.parent = parentObject.transform;
     }
 
     public void GotPhoto(Vector3 photoPosition)

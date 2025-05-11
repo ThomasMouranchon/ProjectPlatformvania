@@ -67,7 +67,7 @@ Material:
     - _Metallic: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.1
+    - _Smoothness: 0.8
     - _Tile: 0.03
     - _WorldSpace: 1
     m_Colors:

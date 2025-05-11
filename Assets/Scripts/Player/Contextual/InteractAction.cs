@@ -15,7 +15,6 @@ public class InteractAction : MonoBehaviour
 
     public bool isInteracting, nextInteraction, isFastForward;
     public int afterTalkTimer;
-    private bool validate, validateHold, back, backHold, jump;
 
     private CharacterManager characterManager;
     private HealthManager healthManager;
@@ -40,19 +39,9 @@ public class InteractAction : MonoBehaviour
         healthManager = HealthManager.Instance;
         inputReader = InputReader.Instance;
     }
-
-    void Update()
-    {
-        validate = inputReader.validate;
-        validateHold = inputReader.validateHold;
-        back = inputReader.back;
-        backHold = inputReader.backHold;
-        jump = inputReader.jump;
-    }
-
     private void FixedUpdate()
     {
-        if ((validate | jump | backHold) && characterManager.isGrounded
+        if (inputReader.interact && characterManager.isGrounded
             && !characterManager.isJumping && !characterManager.isDashing
             && !characterManager.landed && characterManager.moveForm <= 1
             && characterManager.canInteract)
@@ -65,10 +54,10 @@ public class InteractAction : MonoBehaviour
                     NextInteraction();
                 }
 
-                if (backHold) isFastForward = true;
+                if (inputReader.backHold) isFastForward = true;
                 else isFastForward = false;
             }
-            else if (!backHold)
+            else if (!inputReader.backHold)
             {
                 afterTalkTimer++;
                 StartInteraction();

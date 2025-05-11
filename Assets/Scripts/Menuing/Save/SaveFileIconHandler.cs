@@ -42,8 +42,8 @@ public class SaveFileIconHandler : MonoBehaviour
             
             ShowSaveFile(data.startedGame);
 
-            string formattedHours = data.playTimeTuple.currentHours.ToString();
-            string formattedMins = data.playTimeTuple.currentMinutes.ToString();
+            string formattedHours = data.playTimeHours.ToString();
+            string formattedMins = data.playTimeMinutes.ToString();
 
             if (formattedHours.Length == 1) formattedHours = formattedHours.PadLeft(2, '0');
             if (formattedMins.Length == 1) formattedMins = formattedMins.PadLeft(2, '0');
@@ -73,47 +73,29 @@ public class SaveFileIconHandler : MonoBehaviour
     public void LoadCurrentElements()
     {
         saveManager = SaveManager.Instance;
-        string filePath = Application.persistentDataPath + "/playerInfo" + saveFileValue.ToString() + ".dat";
 
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file;
-        PlayerData_Storage data;
+        ShowSaveFile(saveManager.startedGame);
 
-        if (File.Exists(filePath))
+        string formattedHours = saveManager.playTimeHours.ToString();
+        string formattedMins = saveManager.playTimeMinutes.ToString();
+
+        if (formattedHours.Length == 1) formattedHours = formattedHours.PadLeft(2, '0');
+        if (formattedMins.Length == 1) formattedMins = formattedMins.PadLeft(2, '0');
+
+        gameTimeText.text = formattedHours + " : " + formattedMins;
+        /*
+        enableItemsImages[0].enabled = saveManager.enableGlide;
+        enableItemsImages[1].enabled = saveManager.enableDash;
+        enableItemsImages[2].enabled = saveManager.enableWallJump;
+        enableItemsImages[3].enabled = saveManager.enableYoyo;
+        enableItemsImages[4].enabled = saveManager.enableSpeedBoost;
+        enableItemsImages[5].enabled = saveManager.enableBomb;
+
+        for (int i = 0; i < finishedDungeonsImages.Length; i++)
         {
-            file = File.Open(filePath, FileMode.Open);
-            data = (PlayerData_Storage)bf.Deserialize(file);
-
-            ShowSaveFile(saveManager.startedGame);
-
-            (float currentPlayTime, int currentHours, int currentMinutes, int currentSeconds) playTimeTuple = PlayTimeHandler.Instance.GetCurrentPlayTime(data.playTimeTuple.currentPlayTime);
-
-            string formattedHours = playTimeTuple.currentHours.ToString();
-            string formattedMins = playTimeTuple.currentMinutes.ToString();
-
-            if (formattedHours.Length == 1) formattedHours = formattedHours.PadLeft(2, '0');
-            if (formattedMins.Length == 1) formattedMins = formattedMins.PadLeft(2, '0');
-
-            gameTimeText.text = formattedHours + " : " + formattedMins;
-            /*
-            enableItemsImages[0].enabled = saveManager.enableGlide;
-            enableItemsImages[1].enabled = saveManager.enableDash;
-            enableItemsImages[2].enabled = saveManager.enableWallJump;
-            enableItemsImages[3].enabled = saveManager.enableYoyo;
-            enableItemsImages[4].enabled = saveManager.enableSpeedBoost;
-            enableItemsImages[5].enabled = saveManager.enableBomb;
-
-            for (int i = 0; i < finishedDungeonsImages.Length; i++)
-            {
-                finishedDungeonsImages[i].enabled = saveManager.finishedDungeons[i];
-            }
-            */
-            file.Close();
+            finishedDungeonsImages[i].enabled = saveManager.finishedDungeons[i];
         }
-        else
-        {
-            ShowSaveFile(false);
-        }
+        */
     }
 
     private void ShowSaveFile(bool hasFile)

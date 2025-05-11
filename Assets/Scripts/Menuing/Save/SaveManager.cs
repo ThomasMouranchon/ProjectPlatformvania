@@ -1,11 +1,22 @@
+using FIMSpace.GroundFitter;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
+using static SaveManager;
 
 public class SaveManager : MonoBehaviour
 {
+    public enum zones
+    {
+        CentralCity,
+        Desertis,
+        Corailla,
+        OlympeMount,
+        DarkSea
+    }
+
     private static SaveManager instance = null;
     public static SaveManager Instance => instance;
 
@@ -26,12 +37,27 @@ public class SaveManager : MonoBehaviour
     [Header("Teleports")]
     public int lastTeleportPoint;
     [Space(10)]
-    public bool[] activatedTeleportations;
+    public bool[] activatedTeleportations = new bool[100];
+    [Space(10)]
+    public float[] activatedTeleportationsPositionsX = new float[100];
+    public float[] activatedTeleportationsPositionsY = new float[100];
+    public float[] activatedTeleportationsPositionsZ = new float[100];
+    [Space(10)]
+    public float[] activatedTeleportationsRotationsX = new float[100];
+    public float[] activatedTeleportationsRotationsY = new float[100];
+    public float[] activatedTeleportationsRotationsZ = new float[100];
+    public float[] activatedTeleportationsRotationsW = new float[100];
+    [Space(10)]
+    public string[] activatedTeleportationsZone = new string[100];
     [Space(30)]
 
     [Header("Events")]
     public int numberOfEvents;
-    public bool[] activatedEvents;
+    public bool[] activatedEvents = new bool[100];
+    [Space(30)]
+
+    [Header("Play time")]
+    public int playTimeSeconds, playTimeMinutes, playTimeHours;
 
     private void Awake()
     {
@@ -87,7 +113,22 @@ public class SaveManager : MonoBehaviour
 
         activatedTeleportations = data.activatedTeleportations;
 
+        activatedTeleportationsPositionsX = data.activatedTeleportationsPositionsX;
+        activatedTeleportationsPositionsY = data.activatedTeleportationsPositionsY;
+        activatedTeleportationsPositionsZ = data.activatedTeleportationsPositionsZ;
+
+        activatedTeleportationsRotationsX = data.activatedTeleportationsRotationsX;
+        activatedTeleportationsRotationsY = data.activatedTeleportationsRotationsY;
+        activatedTeleportationsRotationsZ = data.activatedTeleportationsRotationsZ;
+        activatedTeleportationsRotationsW = data.activatedTeleportationsRotationsW;
+
+        activatedTeleportationsZone = data.activatedTeleportationsZone;
+
         if (data.activatedEvents.Length > 0) activatedEvents = data.activatedEvents;
+
+        playTimeSeconds = data.playTimeSeconds;
+        playTimeMinutes = data.playTimeMinutes;
+        playTimeHours = data.playTimeHours;
 
         file.Close();
     }
@@ -117,9 +158,22 @@ public class SaveManager : MonoBehaviour
 
         data.activatedTeleportations = activatedTeleportations;
 
+        data.activatedTeleportationsPositionsX = activatedTeleportationsPositionsX;
+        data.activatedTeleportationsPositionsY = activatedTeleportationsPositionsY;
+        data.activatedTeleportationsPositionsZ = activatedTeleportationsPositionsZ;
+
+        data.activatedTeleportationsRotationsX = activatedTeleportationsRotationsX;
+        data.activatedTeleportationsRotationsY = activatedTeleportationsRotationsY;
+        data.activatedTeleportationsRotationsZ = activatedTeleportationsRotationsZ;
+        data.activatedTeleportationsRotationsW = activatedTeleportationsRotationsW;
+
+        data.activatedTeleportationsZone = activatedTeleportationsZone;
+
         data.activatedEvents = activatedEvents;
 
-        data.playTimeTuple = PlayTimeHandler.Instance.GetCurrentPlayTime(data.playTimeTuple.currentPlayTime);
+        data.playTimeSeconds = playTimeSeconds;
+        data.playTimeMinutes = playTimeMinutes;
+        data.playTimeHours = playTimeHours;
 
         bf.Serialize(file, data);
         file.Close();
@@ -157,13 +211,24 @@ class PlayerData_Storage
     [Header("Teleports")]
     public int lastTeleportPoint;
     [Space(10)]
-    public bool[] activatedTeleportations;
+    public bool[] activatedTeleportations = new bool[100];
+    [Space(10)]
+    public float[] activatedTeleportationsPositionsX = new float[100];
+    public float[] activatedTeleportationsPositionsY = new float[100];
+    public float[] activatedTeleportationsPositionsZ = new float[100];
+    [Space(10)]
+    public float[] activatedTeleportationsRotationsX = new float[100];
+    public float[] activatedTeleportationsRotationsY = new float[100];
+    public float[] activatedTeleportationsRotationsZ = new float[100];
+    public float[] activatedTeleportationsRotationsW = new float[100];
+    [Space(10)]
+    public string[] activatedTeleportationsZone = new string[100];
     [Space(30)]
 
     [Header("Events")]
-    public bool[] activatedEvents = new bool[20];
+    public bool[] activatedEvents = new bool[100];
     [Space(30)]
 
     [Header("Play time")]
-    public (float currentPlayTime, int currentHours, int currentMinutes, int currentSeconds) playTimeTuple;
+    public int playTimeSeconds, playTimeMinutes, playTimeHours;
 }

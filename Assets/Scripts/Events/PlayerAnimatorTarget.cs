@@ -8,7 +8,7 @@ public class PlayerAnimatorTarget : MonoBehaviour
     {
         MainCharacter,
         Eyes,
-        Mouth
+        Cloth
     }
 
     public TargetedPlayerAnimator targetedAnimator;
@@ -23,6 +23,9 @@ public class PlayerAnimatorTarget : MonoBehaviour
                 break;
             case TargetedPlayerAnimator.Eyes:
                 playAnimation.animator = AnimUpdater.Instance.eyeAnim;
+                break;
+            case TargetedPlayerAnimator.Cloth:
+                playAnimation.animator = AnimUpdater.Instance.clothAnim;
                 break;
         }
     }

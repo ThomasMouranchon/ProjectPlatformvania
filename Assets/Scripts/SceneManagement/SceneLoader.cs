@@ -3,13 +3,25 @@ using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PixelCrushers.SceneStreamer;
+
 
 public class SceneLoader : MonoBehaviour
 {
     private AsyncOperation asyncOperation;
-    public string sceneName;
+    public string defaultSceneName;
 
-    void OnTriggerEnter(Collider other)
+    private void Start()
+    {
+        string currentScene = defaultSceneName;
+        if (SaveManager.Instance.lastTeleportPoint != 0)
+        {
+            currentScene = SaveManager.Instance.activatedTeleportationsZone[SaveManager.Instance.lastTeleportPoint].ToString();
+        }
+        SceneStreamer.SetCurrentScene(currentScene);
+    }
+
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -22,9 +34,14 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadScene()
     {
-        if (sceneName != "")
+        if (defaultSceneName != "")
         {
-            asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+            string currentScene = defaultSceneName;
+            if (SaveManager.Instance.lastTeleportPoint != 0)
+            {
+                currentScene = SaveManager.Instance.activatedTeleportationsZone[SaveManager.Instance.lastTeleportPoint].ToString();
+            }
+            asyncOperation = SceneManager.LoadSceneAsync(currentScene);
             //asyncOperation.allowSceneActivation = false;
         }
         else
@@ -43,10 +60,10 @@ public class SceneLoader : MonoBehaviour
 
     private void UnloadScene()
     {
-        if (sceneName != "")
+        if (defaultSceneName != "")
         {
-            SceneManager.UnloadSceneAsync(sceneName);
-            Debug.Log($"Scène {sceneName} déchargée.");
+            SceneManager.UnloadSceneAsync(defaultSceneName);
+            Debug.Log($"Scène {defaultSceneName} déchargée.");
         }
         else
         {

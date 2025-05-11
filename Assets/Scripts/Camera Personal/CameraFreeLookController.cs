@@ -10,6 +10,7 @@ public class CameraFreeLookController : MonoBehaviour
 
     public CinemachineFreeLook cinemachineFreeLook;
     public CinemachineCollider cinemachineCollider;
+    public CinemachineInputProvider cinemachineInputProvider;
     [Space(10)]
 
     public Transform playerObject;
@@ -31,7 +32,6 @@ public class CameraFreeLookController : MonoBehaviour
     private float stickIncline;
     [Range(0.01f, 0.2f)]
     public float stickInclineDeadZone;
-    private Vector2 cameraInput;
 
     public Animator fixedCameraIconAnim;
     public bool fixedCamera;
@@ -79,24 +79,31 @@ public class CameraFreeLookController : MonoBehaviour
 
         SwitchFixedCamera(false, true);
     }
+    private void FixedUpdate()
+    {
+        if (Application.targetFrameRate < 60 && Application.targetFrameRate > 0)
+        {
+            CameraInput();
+        }
+    }
 
-    // Update is called once per frame
-    void LateUpdate()
+    private void LateUpdate()
+    {
+        if (Application.targetFrameRate <= 0 | Application.targetFrameRate >= 60)
+        {
+            CameraInput();
+        }
+    }
+
+    public void CameraInput()
     {
         if (inputReader.enableCameraInput && !fixedCamera)
         {
-            cameraInput = inputReader.cameraInput;
-            stickIncline = Mathf.Abs(cameraInput.y) + Mathf.Abs(cameraInput.x);
-
-            if (Mathf.Abs(cameraTarget.position.y - cinemachineFreeLook.transform.position.y) < 0.5f &&
-                CharacterManager.Instance.isGrounded)
-            {
-                cinemachineCollider.enabled = false;
-            }
-            else cinemachineCollider.enabled = true;
+            stickIncline = Mathf.Abs(inputReader.cameraInput.y) + Mathf.Abs(inputReader.cameraInput.x);
 
             if (inputReader.enableCameraInput)
             {
+                cinemachineInputProvider.enabled = true;
                 if (inputReader.isMouseAndKeyboard)
                 {
                     horizontalStandardSpeed = horizontalMouseSpeed;
@@ -141,12 +148,14 @@ public class CameraFreeLookController : MonoBehaviour
             {
                 cinemachineFreeLook.m_XAxis.m_MaxSpeed = 0;
                 cinemachineFreeLook.m_YAxis.m_MaxSpeed = 0;
+                cinemachineInputProvider.enabled = false;
             }
         }
         else
         {
             cinemachineFreeLook.m_XAxis.m_MaxSpeed = 0;
             cinemachineFreeLook.m_YAxis.m_MaxSpeed = 0;
+            cinemachineInputProvider.enabled = false;
         }
     }
 

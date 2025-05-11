@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Flame 2
+  m_Name: Shader Flame Blue 1
   m_Shader: {fileID: -6465566751694194690, guid: c774be6fd6985044bac56ec2b7a2ea28, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -55,6 +55,6 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - Color_07ae26fc10c74ed7b465886052debc65: {r: 0, g: 0, b: 0, a: 1}
-    - Color_d9ead912967b49f496fca797610e1ded: {r: 0, g: 0.117425375, b: 0.35686275, a: 1}
-    - Color_fbb18404ef054e1bb61f8a9dc6f84a7c: {r: 0, g: 0.6120781, b: 1.7874154, a: 1}
+    - Color_d9ead912967b49f496fca797610e1ded: {r: 0, g: 0.5686275, b: 0.84705883, a: 1}
+    - Color_fbb18404ef054e1bb61f8a9dc6f84a7c: {r: 0, g: 1.6109868, b: 1.7874154, a: 1}
   m_BuildTextureStacks: []

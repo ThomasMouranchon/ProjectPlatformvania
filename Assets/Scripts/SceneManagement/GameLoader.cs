@@ -12,6 +12,9 @@ public class GameLoader : MonoBehaviour
     private static GameLoader instance = null;
     public static GameLoader Instance => instance;
 
+    public string defaultScene;
+    [Space(10)]
+
     public GameObject starTransition, starTransitionInverted, playerTransition;
     private Animator starTransitionAnim, starTransitionInvertedAnim, playerTransitionAnim;
     [Space(10)]
@@ -139,34 +142,39 @@ public class GameLoader : MonoBehaviour
 
             if (levelToLoad == "StartScene")
             {
-                SceneStreamer.SetCurrentScene("Desertis");
+                yield return new WaitForFixedUpdate();
+                string currentScene = defaultScene;
+                if (SaveManager.Instance.lastTeleportPoint != 0)
+                {
+                    currentScene = SaveManager.Instance.activatedTeleportationsZone[SaveManager.Instance.lastTeleportPoint].ToString();
+                }
+                SceneStreamer.SetCurrentScene("CentralCity");
             }
         }
-        /*else
-        {*/
-            switch (randomValue)
-            {
-                default:
-                    starTransitionAnim.CrossFade("StarTransition_End1", 0);
-                    break;
-                case 1:
-                    starTransitionAnim.CrossFade("StarTransition_End2", 0);
-                    break;
-                case 2:
-                    starTransitionAnim.CrossFade("StarTransition_End3", 0);
-                    break;
-                case 3:
-                    starTransitionAnim.CrossFade("StarTransition_End4", 0);
-                    break;
-            }
-        //}
+
+        yield return new WaitForFixedUpdate();
+
+        switch (randomValue)
+        {
+            default:
+                starTransitionAnim.CrossFade("StarTransition_End1", 0);
+                break;
+            case 1:
+                starTransitionAnim.CrossFade("StarTransition_End2", 0);
+                break;
+            case 2:
+                starTransitionAnim.CrossFade("StarTransition_End3", 0);
+                break;
+            case 3:
+                starTransitionAnim.CrossFade("StarTransition_End4", 0);
+                break;
+        }
 
         while (!starTransitionAnim.GetCurrentAnimatorStateInfo(0).IsName("StarTransition_Idle"))
         {
             yield return null;
         }
 
-        //starTransition.SetActive(false);
         loadingOverlay.SetActive(false);
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Localization.Components;
 using UnityEngine.UI;
 
 public class SaveFileButtonHandler : MonoBehaviour
@@ -50,6 +51,7 @@ public class SaveFileButtonHandler : MonoBehaviour
     private MainMenuManager mainMenuManager;
     private Button goBackButton;
     public ChangeString changeStringReset;
+    public LocalizeStringEvent copyStringEvent, copyConfirmStringEvent, deleteStringEvent;
 
     private void Awake()
     {
@@ -77,6 +79,9 @@ public class SaveFileButtonHandler : MonoBehaviour
 
     public void SwitchNavigation(int state)
     {
+        copyStringEvent.enabled = (state == 1);
+        copyConfirmStringEvent.enabled = (state == 2);
+        deleteStringEvent.enabled = (state == 3);
         for (int i = 0; i < saveFileButtons.Length; i++)
         {
             saveFileButtons[i].enabled = (state == 0);
@@ -127,7 +132,8 @@ public class SaveFileButtonHandler : MonoBehaviour
         {
             eventSystem.SetSelectedGameObject(buttonList[state].gameObject);
 
-            /*if (state == 1 | state == 3)*/ goBackButton.onClick.AddListener(SwitchNav0);
+            /*if (state == 1 | state == 3)*/
+            goBackButton.onClick.AddListener(SwitchNav0);
             //else goBackButton.onClick.AddListener(SwitchNav1);
         }
         copyConfirmation.SetActive(false);
@@ -187,7 +193,7 @@ public class SaveFileButtonHandler : MonoBehaviour
     {
         copyConfirmation.SetActive(false);
         copyNotification.SetActive(show);
-        blackScreenImage.raycastTarget = show;        
+        blackScreenImage.raycastTarget = show;
 
         if (show)
         {

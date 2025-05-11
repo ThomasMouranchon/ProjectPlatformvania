@@ -31121,7 +31121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -42704,6 +42704,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5530694823996237838}
     - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
+      propertyPath: copyStringEvent
+      value: 
+      objectReference: {fileID: 4154340416545881525}
+    - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
       propertyPath: blackScreenImage
       value: 
       objectReference: {fileID: 4751569391012312360}
@@ -42720,6 +42724,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5372118287891481311}
     - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
+      propertyPath: deleteStringEvent
+      value: 
+      objectReference: {fileID: 6849150347650485782}
+    - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
       propertyPath: deleteConfirmation
       value: 
       objectReference: {fileID: 2337766396455156312}
@@ -42731,6 +42739,10 @@ PrefabInstance:
       propertyPath: deleteConfirmation2
       value: 
       objectReference: {fileID: 1447255587538068831}
+    - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
+      propertyPath: copyConfirmStringEvent
+      value: 
+      objectReference: {fileID: 3618341877854084113}
     - target: {fileID: 5747839510473129867, guid: 90236e8564c26774baaccb99ab10197c, type: 3}
       propertyPath: copyConfirmationButton
       value: 

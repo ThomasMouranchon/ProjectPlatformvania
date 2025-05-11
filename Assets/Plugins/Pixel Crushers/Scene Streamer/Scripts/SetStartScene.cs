@@ -17,9 +17,14 @@ namespace PixelCrushers.SceneStreamer
 		[Tooltip("Load this scene at start")]
 		public string startSceneName = "Scene 1";
 
-		public void Start() 
-		{
-			SceneStreamer.SetCurrentScene(startSceneName);
+		public void Start()
+        {/*
+            string currentScene = startSceneName;
+            if (SaveManager.Instance.lastTeleportPoint != 0)
+            {
+                currentScene = SaveManager.Instance.activatedTeleportationsZone[SaveManager.Instance.lastTeleportPoint].ToString();
+            }*/
+            //SceneStreamer.SetCurrentScene(startSceneName);
 			Destroy(this);
 		}
 

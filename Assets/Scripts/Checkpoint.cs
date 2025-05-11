@@ -2,53 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PhysicsBasedCharacterController
+public class Checkpoint : MonoBehaviour
 {
-    public class Checkpoint : MonoBehaviour
+    private HealthManager healthManager;
+    private SaveManager saveManager;
+
+    public GameObject rendererOn, rendererOff;
+
+    public int value = -1;
+    public SaveManager.zones location;
+
+    private void Start()
     {
-        private HealthManager healthManagerScript;
+        healthManager = HealthManager.Instance;
+    }
 
-        public Renderer theRend;
+    public void CheckpointOn()
+    {
+        Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
 
-        public Material cpOff;
-        public Material cpOn;
-
-        // Start is called before the first frame update
-        void Start()
+        foreach (Checkpoint cp in checkpoints)
         {
-            healthManagerScript = HealthManager.Instance;
+            cp.CheckpointOff();
         }
 
-        // Update is called once per frame
-        void Update()
+        if (rendererOn) rendererOn.SetActive(true);
+        if (rendererOff) rendererOff.SetActive(false);
+
+        if (value != -1) AddTeleporter(value);
+    }
+
+    public void CheckpointOff()
+    {
+        if (rendererOn) rendererOn.SetActive(false);
+        if (rendererOff) rendererOff.SetActive(true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag.Equals("Player"))
         {
+            healthManager.SetSpawnPoint(transform.position + Vector3.up * 3, transform.rotation);
+            CheckpointOn();
+        }
+    }
+
+    private void AddTeleporter(int value)
+    {
+        SaveManager.Instance.lastTeleportPoint = value;
+        SaveManager.Instance.activatedTeleportations[value] = true;
         
-        }
+        SaveManager.Instance.activatedTeleportationsPositionsX[value] = transform.position.x;
+        SaveManager.Instance.activatedTeleportationsPositionsY[value] = transform.position.y;
+        SaveManager.Instance.activatedTeleportationsPositionsZ[value] = transform.position.z;
 
-        public void CheckpointOn()
-        {
-            Checkpoint[] checkpoints = FindObjectsOfType<Checkpoint>();
+        SaveManager.Instance.activatedTeleportationsRotationsX[value] = transform.rotation.x;
+        SaveManager.Instance.activatedTeleportationsRotationsY[value] = transform.rotation.y;
+        SaveManager.Instance.activatedTeleportationsRotationsZ[value] = transform.rotation.z;
+        SaveManager.Instance.activatedTeleportationsRotationsW[value] = transform.rotation.w;
 
-            foreach (Checkpoint cp in checkpoints)
-            {
-                cp.CheckpointOff();
-            }
-        
-            theRend.material = cpOn;
-        }
-
-        public void CheckpointOff()
-        {
-            theRend.material = cpOff;
-        }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.tag.Equals("Player"))
-            {
-                healthManagerScript.SetSpawnPoint(transform.position + Vector3.up * 3, transform.rotation);
-                CheckpointOn();
-            }
-        }
+        SaveManager.Instance.activatedTeleportationsZone[value] = location.ToString();
     }
 }

@@ -8,7 +8,8 @@ public class Event_TransformGO : MonoBehaviour
     public enum RotationType
     {
         Follow,
-        RotateTowards
+        RotateTowards,
+        Copy
     }
 
     [HideInInspector] public bool startTrPosition, startTrRotation, startTrScale;
@@ -27,7 +28,6 @@ public class Event_TransformGO : MonoBehaviour
     public bool endWhenFinished = true;
 
     private float tolerance = 0.01f;
-    public bool makePlayerLand = false;
 
     public void TransformGameObject(bool instant)
     {
@@ -64,29 +64,40 @@ public class Event_TransformGO : MonoBehaviour
 
             if (Vector3.Distance(target.transform.position, targetEnd.transform.position) < tolerance && endWhenFinished)
             {
-                startTrPosition = false;
-                if (makePlayerLand) CharacterManager.Instance.soulAnim.CrossFade("Player_LandingIdle", 0);
+                startTrPosition = false;//CharacterManager.Instance.soulAnim.CrossFade("Player_LandingIdle", 0);
             }
         }
 
         if (startTrRotation)
         {
             Quaternion targetQuaternion = Quaternion.Euler(targetEnd.transform.eulerAngles);
-            
+
             switch (rotationType)
             {
                 case RotationType.Follow:
-                    targetQuaternion = Quaternion.Euler(targetEnd.transform.eulerAngles);
+                    targetQuaternion = targetEnd.transform.rotation;
                     target.transform.rotation = Quaternion.RotateTowards(
                         target.transform.rotation,
                         targetQuaternion,
                         rotationSpeed.magnitude * Time.deltaTime
                     );
                     break;
+
                 case RotationType.RotateTowards:
                     Vector3 direction = (targetEnd.transform.position - target.transform.position).normalized;
                     targetQuaternion = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                     target.transform.rotation = Quaternion.Slerp(target.transform.rotation, targetQuaternion, Time.deltaTime * rotationSpeed.magnitude);
+                    break;
+
+                case RotationType.Copy:
+                    target.transform.rotation = targetEnd.transform.rotation;
+
+                    if (target.GetComponent<CharacterManager>())
+                    {
+                        CharacterManager.Instance.targetAngle = targetEnd.transform.eulerAngles.y;
+                        CharacterManager.Instance.lastRotationAngle = targetEnd.transform.eulerAngles.y;
+                    }
+
                     break;
             }
 
@@ -104,12 +115,5 @@ public class Event_TransformGO : MonoBehaviour
 
             if (Vector3.Distance(target.transform.localScale, targetEnd.transform.localScale) < tolerance && endWhenFinished) startTrScale = false;
         }
-    }
-
-    public void StopTransform()
-    {
-        startTrPosition = false;
-        startTrRotation = false;
-        startTrScale = false;
     }
 }
