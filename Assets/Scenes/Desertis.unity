@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7764875161230572442, guid: 0b9d9cee23c1c724dae4d4b185878271, type: 3}
       propertyPath: nextSceneName
-      value: CentralCity
+      value: Corailla
       objectReference: {fileID: 0}
     - target: {fileID: 7764875161230572442, guid: 0b9d9cee23c1c724dae4d4b185878271, type: 3}
       propertyPath: currentSceneRoot
@@ -200,7 +200,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7764875161863107539, guid: 0b9d9cee23c1c724dae4d4b185878271, type: 3}
       propertyPath: sceneNames.Array.data[0]
-      value: CentralCity
+      value: Corailla
       objectReference: {fileID: 0}
     - target: {fileID: 7764875161863107541, guid: 0b9d9cee23c1c724dae4d4b185878271, type: 3}
       propertyPath: m_Name

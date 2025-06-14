@@ -175,7 +175,7 @@ public class OptionsValues : MonoBehaviour
         PlayerPrefs.SetFloat("cameraHorizontalSpeed", cameraSpeedHorizontalMultiplier);
         PlayerPrefs.SetFloat("cameraVerticalSpeed", cameraSpeedVerticalMultiplier);
         PlayerPrefs.SetInt("invertXAxis", invertXAxis ? 1 : 0);
-        PlayerPrefs.SetInt("invertYAxis", invertYAxis ? 1 : 0);
+        PlayerPrefs.SetInt("invertYAxis", invertYAxis ? 1 : 1);
         PlayerPrefs.SetInt("cameraShake", cameraShake ? 1 : 0);
         PlayerPrefs.SetInt("visibleAimIcon", visibleAimIcon ? 1 : 0);
         PlayerPrefs.SetInt("visibleInterface", visibleInterface ? 1 : 0);
@@ -237,7 +237,7 @@ public class OptionsValues : MonoBehaviour
         cameraSpeedHorizontalMultiplier = PlayerPrefs.GetFloat("cameraHorizontalSpeed", 1);
         cameraSpeedVerticalMultiplier = PlayerPrefs.GetFloat("cameraVerticalSpeed", 1);
         invertXAxis = PlayerPrefs.GetInt("invertXAxis", 0) == 1;
-        invertYAxis = PlayerPrefs.GetInt("invertYAxis", 0) == 1;
+        invertYAxis = PlayerPrefs.GetInt("invertYAxis", 1) == 1;
         cameraShake = PlayerPrefs.GetInt("cameraShake", 1) == 1;
 
         visibleAimIcon = PlayerPrefs.GetInt("visibleAimIcon", 1) == 1;

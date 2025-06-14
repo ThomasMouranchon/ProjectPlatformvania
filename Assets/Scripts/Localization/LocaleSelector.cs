@@ -21,7 +21,7 @@ public class LocaleSelector : MonoBehaviour
         else
         {
             instance = this;
-            int ID = PlayerPrefs.GetInt("language", 0);
+            int ID = PlayerPrefs.GetInt("language", 1);
             ChangeLocale(ID);
         }
     }

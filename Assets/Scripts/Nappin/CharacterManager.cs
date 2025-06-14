@@ -1487,6 +1487,7 @@ public class CharacterManager : MonoBehaviour
                                 isGliding = false;
                                 ledgeJump = true;
                                 isJumping = true;
+                                canDash = true;
                                 airbornedTimer = 1;
                                 additionalGravity = 0;
                                 tryingToClimbTimer = 0;
@@ -1787,7 +1788,7 @@ public class CharacterManager : MonoBehaviour
                     globalForward = tmpGlobalForward * ((speedMultiplierOnAngle.Evaluate(currentSurfaceAngle / 90f) * cantSlideMultiplierCurve) + 1f);
                     reactionForward = tmpReactionForward * ((speedMultiplierOnAngle.Evaluate(currentSurfaceAngle / 90f) * cantSlideMultiplierCurve) + 1f);
 
-                    targetAngle = tmpGlobalForward.y;
+                    //targetAngle = tmpGlobalForward.y;
                     SetFriction(0f, true);
                     currentLockOnSlope = lockOnSlope;
                     if (!isGrounded | landed)
@@ -1796,7 +1797,7 @@ public class CharacterManager : MonoBehaviour
                         additionalGravity = 0;
                         isDiving = false;
                     }
-
+                    /*
                     if (afterNormalSlopeLeavingTimer < 12) afterNormalSlopeLeavingTimer++;
 
                     if (((Physics.Raycast(frontSlopePoint.transform.position, -Vector3.up, distToGround + distToGroundForSlopes, groundMask) &&
@@ -1838,7 +1839,7 @@ public class CharacterManager : MonoBehaviour
                         Instantiate<ParticleSystem>(slideEffect3D, characterModel.transform.position, neutralRotation);
                     }
 
-                    slopeJumpDirection = new Vector3(slopeHit.normal.x, 0, slopeHit.normal.z);
+                    slopeJumpDirection = new Vector3(slopeHit.normal.x, 0, slopeHit.normal.z);*/
                 }
 
                 currentSurfaceAngle = Vector3.Angle(Vector3.up, slopeHit.normal);
@@ -2373,7 +2374,8 @@ public class CharacterManager : MonoBehaviour
     {
         SaveManager saveManager = SaveManager.Instance;
 
-        isRespawning = true;
+        isRespawning = false;
+        soulAnim.SetBool("isRespawning", false);
         canMove = false;
         rigidbody.velocity = Vector3.zero;
         isDashing = false;
@@ -2445,7 +2447,7 @@ public class CharacterManager : MonoBehaviour
 
         soulAnim.SetBool("isCloseToDamage", false);
         soulAnim.SetBool("isCloseToBoss", false);
-        soulAnim.SetBool("isRespawning", SaveManager.Instance.startedGame);
+        soulAnim.SetBool("isRespawning", false);
 
         yield return new WaitForEndOfFrame();
 

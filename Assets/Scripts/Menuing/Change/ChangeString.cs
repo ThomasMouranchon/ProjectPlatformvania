@@ -11,13 +11,19 @@ public class ChangeString : MonoBehaviour
     public TMP_Text[] textBoxList;
     [TextArea(3, 3)]
     public LocalizeStringEvent[] stringList;
-    public bool effectOnHover;
+    public bool effectOnHover, refreshOnStart = true;
 
     void Start()
     {
-        for (int i = 0; i < stringList.Length; i++)
+        if (refreshOnStart)
         {
-            stringList[i].RefreshString();
+            if (stringList.Length > 0)
+            {
+                for (int i = 0; i < stringList.Length; i++)
+                {
+                    stringList[i].RefreshString();
+                }
+            }
         }
     }
 
