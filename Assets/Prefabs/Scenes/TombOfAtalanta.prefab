@@ -3774,7 +3774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   savedEvent: 1
-  savedEventValue: 2
+  savedEventValue: 1
   loadSaveAtStart: 0
   oneTimeEvent: 1
   eventIsHappening: 0
@@ -10007,7 +10007,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8975998457593287818}
   - component: {fileID: 5453480513764815144}
-  - component: {fileID: 6425417154756697200}
   - component: {fileID: 4750945842777113597}
   m_Layer: 2
   m_Name: Checkpoint1
@@ -10044,18 +10043,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 20, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6425417154756697200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520116159083086094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b608f92f7b6a4754f9e1cf9a27f38408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4750945842777113597
 MonoBehaviour:
   m_ObjectHideFlags: 0
