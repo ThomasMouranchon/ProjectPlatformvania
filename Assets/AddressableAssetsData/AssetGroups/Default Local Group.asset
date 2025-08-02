@@ -15,10 +15,30 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 23724365c72254443959ab3831ff5105
+  m_GUID: 717a3fe1416cc7b46954ec45dee7326c
   m_SerializeEntries:
-  - m_GUID: 5ac4c1125e345f947ab24c4d1012db03
-    m_Address: Assets/Scripts/Nappin/MovementActions.inputactions
+  - m_GUID: 7b5413938b2d79a40ad6e992b9e8d7a2
+    m_Address: Assets/Localization/Tables/UITable Shared Data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: eb045d779db37eb4799ed494062d9ab1
+    m_Address: Assets/Localization/Tables/UITable_fr.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6d332b2a3404aa648b8294cbe9f6ecc7
+    m_Address: Assets/Localization/Tables/UITable_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 158e77a0d20431d409557fa96eb8e63a
+    m_Address: Assets/Localization/Tables/ZoneTable_Desertis_en.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 4aac737e87716364b80538a5ac77c70a
+    m_Address: Assets/Localization/Tables/ZoneTable_Desertis_fr.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 6ccb633b5842ffa40b207192bf826c7e
+    m_Address: Assets/Localization/Tables/ZoneTable_Desertis Shared Data.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

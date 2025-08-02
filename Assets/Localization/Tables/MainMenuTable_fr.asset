@@ -98,6 +98,12 @@ MonoBehaviour:
     m_Localized: "Certain ? Vous ne pourrez pas revenir en arri\xE8re !"
     m_Metadata:
       m_Items: []
+  - m_Id: 107202789811437568
+    m_Localized: 'Supprimer
+
+'
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

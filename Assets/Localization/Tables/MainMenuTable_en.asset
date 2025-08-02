@@ -98,6 +98,10 @@ MonoBehaviour:
     m_Localized: Sure ? You won't be able to go back !
     m_Metadata:
       m_Items: []
+  - m_Id: 107202789811437568
+    m_Localized: Delete
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -52,8 +52,5 @@ public class ScriptLocations : MonoBehaviour
 
         inGameUI = gameplayModule.transform.Find("UI").gameObject;
         optionsValues = FindObjectOfType<OptionsValues>();
-        optionsValues.characterManager = characterManager;
-        optionsValues.cameraFreeLookController = cameraFreeLookController;
-        optionsValues.cinemachineFreeLook = cinemachineFreeLook;
     }
 }

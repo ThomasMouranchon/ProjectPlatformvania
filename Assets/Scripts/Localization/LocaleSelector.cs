@@ -8,7 +8,7 @@ public class LocaleSelector : MonoBehaviour
     private static LocaleSelector instance = null;
     public static LocaleSelector Instance => instance;
 
-
+    [SerializeField] private int defaultLanguage = 0;
     private bool active = false;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class LocaleSelector : MonoBehaviour
         else
         {
             instance = this;
-            int ID = PlayerPrefs.GetInt("language", 1);
+            int ID = PlayerPrefs.GetInt("language", defaultLanguage);
             ChangeLocale(ID);
         }
     }

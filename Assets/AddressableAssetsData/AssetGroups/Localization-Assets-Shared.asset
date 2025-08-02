@@ -15,27 +15,19 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_Data:
     m_SerializedData: []
-  m_GUID: 0cddf09159467db448c24f6737599059
+  m_GUID: a2668f4fabc08644d806a457a4adcd45
   m_SerializeEntries:
   - m_GUID: 45d0ae5f3f6cd164bb30fc09158bcd5f
-    m_Address: Assets/Localization/Tables/StringTable Shared Data.asset
+    m_Address: Assets/Localization/Tables/MainMenuTable Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   - m_GUID: 8952284ecf72d30478a905cc53a41c1e
-    m_Address: Assets/Localization/Tables/MenuStrings Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-  - m_GUID: 7b5413938b2d79a40ad6e992b9e8d7a2
-    m_Address: Assets/Localization/Tables/UITable Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-  - m_GUID: 6ccb633b5842ffa40b207192bf826c7e
-    m_Address: Assets/Localization/Tables/ZoneTable_Desertis Shared Data.asset
+    m_Address: Assets/Localization/Tables/PauseMenuStrings Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 13c9be312a3ce5c40984c410b2e2ce28, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a111643a5c67ff74b9461dae1f56c040, type: 2}
-    - {fileID: 11400000, guid: 6fd171a254d3310429b65c7cff39ef29, type: 2}
+    - {fileID: 11400000, guid: 2746fb4329e27354bb745cb4f7d0b18e, type: 2}
+    - {fileID: 11400000, guid: 0620ea2ae09334c489c2f79e942186f9, type: 2}

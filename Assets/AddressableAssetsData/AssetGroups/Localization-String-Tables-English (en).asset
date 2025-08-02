@@ -15,35 +15,21 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-English (en)
   m_Data:
     m_SerializedData: []
-  m_GUID: b1ab836c10cb50c468b420bc4f075fb4
+  m_GUID: 61e8f75aeab8a3b47a70e6f23f3e7e5c
   m_SerializeEntries:
   - m_GUID: da1f59be62ee46445b71f81156370258
     m_Address: MainMenuTable_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
   - m_GUID: e294637842ed746498dc83b794f5b30e
     m_Address: PauseMenuStrings_en
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en
-    - Preload
-  - m_GUID: 6d332b2a3404aa648b8294cbe9f6ecc7
-    m_Address: UITable_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Preload
-  - m_GUID: 158e77a0d20431d409557fa96eb8e63a
-    m_Address: ZoneTable_Desertis_en
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-en
-    - Preload
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 13c9be312a3ce5c40984c410b2e2ce28, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 9a338f292af788e44998c8ec34a9fb0f, type: 2}
-    - {fileID: 11400000, guid: d6e4e0b331b3857429205c4f74ec67bd, type: 2}
+    - {fileID: 11400000, guid: 2e19a8eaea77ba54e97dc0e28b791463, type: 2}
+    - {fileID: 11400000, guid: 9525c2f20cff077438633d169fd8fe78, type: 2}

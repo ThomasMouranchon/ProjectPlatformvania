@@ -66,11 +66,9 @@ public class OptionsSelection : MonoBehaviour
     public OptionsValues optionsValues;
 
     // Start is called before the first frame update
-    void Start()
+    /*void Start()
     {
         optionsValues = FindObjectOfType<OptionsValues>();
-        //OnStartOptionsSelection(this);
-        //OnStartOptionsSelection(otherOptionSelection);
 
         characterDeadZoneSliderValue = optionsValues.controllerMoveDeadZone;
         switch (characterDeadZoneSliderValue)
@@ -192,15 +190,14 @@ public class OptionsSelection : MonoBehaviour
         if (optionsValues.visibleInterface) visibleInterfaceToggle.SetIsOnWithoutNotify(true);
         else visibleInterfaceToggle.SetIsOnWithoutNotify(false);
         
-        /*
+        
         cameraShakePowerSliderValue = optionValues.cameraShakePower;
         cameraShakePowerText.text = "" + cameraShakePowerSliderValue;
 
         if (cameraShakePowerSlider.value == 0) cameraShakePowerSliderValue = 0.5f;
-        else cameraShakePowerSliderValue = cameraShakePowerSlider.value * 0.1f + 0.5f;*/
+        else cameraShakePowerSliderValue = cameraShakePowerSlider.value * 0.1f + 0.5f;
 
         desiredFramerate = optionsValues.targetFramerate;
-        //QualitySettings.vSyncCount = optionValues.vSyncCount;
         if (optionsValues.vSyncCount == 1) vSyncCountToggle.SetIsOnWithoutNotify(true);
         else vSyncCountToggle.SetIsOnWithoutNotify(false);
 
@@ -228,10 +225,7 @@ public class OptionsSelection : MonoBehaviour
         // autoSave
         if (optionsValues.automaticSave) autoSaveToggle.SetIsOnWithoutNotify(true);
         else autoSaveToggle.SetIsOnWithoutNotify(false);
-
-        /*if (QualitySettings.vSyncCount == 1) framerateSelectionGameobject.SetActive(false);
-        else framerateSelectionGameobject.SetActive(true);*/
-    }
+    }*/
     
     public void ChooseCharacterDeadZoneSliderValue()
     {

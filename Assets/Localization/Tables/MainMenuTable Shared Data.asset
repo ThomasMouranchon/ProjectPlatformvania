@@ -95,6 +95,10 @@ MonoBehaviour:
     m_Key: DeleteConfirmation2
     m_Metadata:
       m_Items: []
+  - m_Id: 107202789811437568
+    m_Key: Delete
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

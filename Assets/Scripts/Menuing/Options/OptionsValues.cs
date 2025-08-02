@@ -86,9 +86,6 @@ public class OptionsValues : MonoBehaviour
     /*[Range(0, 2)]
     public float cameraShakePower = 1;*/
     //private ThirdPersonCamera.CameraInputSampling_FreeForm cameraInputScript;
-    [HideInInspector] public CharacterManager characterManager;
-    [HideInInspector] public CameraFreeLookController cameraFreeLookController;
-    [HideInInspector] public CinemachineFreeLook cinemachineFreeLook;
     //private CameraManager cameraManagerScript;
 
     void Awake()
@@ -125,15 +122,28 @@ public class OptionsValues : MonoBehaviour
 
     public void UpdateAllOptions()
     {
-        cameraFreeLookController.stickInclineDeadZone = controllerCameraDeadZone;
-        cameraFreeLookController.cameraSpeedHorizontalMultiplier = cameraSpeedHorizontalMultiplier;
-        cameraFreeLookController.cameraSpeedVerticalMultiplier = cameraSpeedVerticalMultiplier;
+        CameraFreeLookController cameraFreeLookController = CameraFreeLookController.Instance;
+        
+        if (cameraFreeLookController != null)
+        {
+            cameraFreeLookController.stickInclineDeadZone = controllerCameraDeadZone;
+            cameraFreeLookController.cameraSpeedHorizontalMultiplier = cameraSpeedHorizontalMultiplier;
+            cameraFreeLookController.cameraSpeedVerticalMultiplier = cameraSpeedVerticalMultiplier;
 
-        cinemachineFreeLook.m_YAxis.m_InvertInput = invertYAxis;
-        cinemachineFreeLook.m_XAxis.m_InvertInput = invertXAxis;
+            CinemachineFreeLook cinemachineFreeLook = cameraFreeLookController.cinemachineFreeLook;
 
-        characterManager.stickInclineDeadZone = controllerMoveDeadZone;
-        characterManager.cameraShake = cameraShake;
+            cinemachineFreeLook.m_YAxis.m_InvertInput = invertYAxis;
+            cinemachineFreeLook.m_XAxis.m_InvertInput = invertXAxis;
+        }
+
+
+        CharacterManager characterManager = CharacterManager.Instance;
+
+        if (characterManager != null)
+        {
+            characterManager.stickInclineDeadZone = controllerMoveDeadZone;
+            characterManager.cameraShake = cameraShake;
+        }
     }
 
     public void SaveConfiguration()

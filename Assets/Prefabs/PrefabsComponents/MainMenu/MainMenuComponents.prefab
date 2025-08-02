@@ -3425,6 +3425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ce0fb5ca780b942ab277f94ecfd2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultLanguage: 1
 --- !u!1 &803699256887975275
 GameObject:
   m_ObjectHideFlags: 0
@@ -19985,9 +19986,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_StringReference:
     m_TableReference:
-      m_TableCollectionName: GUID:8952284ecf72d30478a905cc53a41c1e
+      m_TableCollectionName: GUID:45d0ae5f3f6cd164bb30fc09158bcd5f
     m_TableEntryReference:
-      m_KeyId: 703145326166016
+      m_KeyId: 107202789811437568
       m_Key: 
     m_FallbackState: 0
     m_WaitForCompletion: 0
@@ -25921,7 +25922,7 @@ GameObject:
   - component: {fileID: 2040406849104800366}
   - component: {fileID: 1277018524646509572}
   - component: {fileID: 1600123481974945382}
-  - component: {fileID: 4198352243130995707}
+  - component: {fileID: 6028251219119459788}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -26046,7 +26047,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4198352243130995707
+--- !u!114 &6028251219119459788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
