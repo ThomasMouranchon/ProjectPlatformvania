@@ -2351,8 +2351,15 @@ public class CharacterManager : MonoBehaviour
     {
         move_CameraAim.CameraAim();
 
-        if (inputReader.cameraSwitch && cameraSwitchTimer > 20) cameraSwitchTimer = 0;
-        else if (inputReader.cameraSwitch) cameraRecenter.recenter = true;
+        if (inputReader.cameraSwitch && cameraSwitchTimer > 20)
+        {
+            cameraSwitchTimer = 0;
+            cameraRecenter.recenter = true;
+        }
+        else if (cameraSwitchTimer <= 20)
+        {
+            cameraSwitchTimer++;
+        }
         else
         {
             cameraSwitcher.ChangeCamera(false);
